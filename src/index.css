@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-blue: #35c42d;
+  --color-brand-green: #0051a6;
+  --color-dark-bg: #020617;
+  --color-dark-card: #0f172a;
+  
+  --font-display: 'Syncopate', sans-serif;
+  --font-code: 'JetBrains Mono', monospace;
+}
+
+@layer utilities {
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+body {
+  @apply bg-dark-bg text-white font-sans;
+}
+
+h1, h2, h3 {
+  @apply font-display;
+}
