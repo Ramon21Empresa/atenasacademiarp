@@ -8,10 +8,13 @@ const unitData: Record<string, any> = {
     name: 'Unidade Independencia',
     address: 'R. Bolívia, 2095 - Ribeirão Preto',
     photos: [
-      'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1593079831268-3381b0db4a77?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=80',
+      '/unidades/independencia/indep-frente.jpg',
+      '/unidades/independencia/indep-dentro.jpg',
+      '/unidades/independencia/indep-piscina.jpg',
+      '/unidades/independencia/indep-piscina2.jpg',
+      '/unidades/independencia/indep-pula-pula.jpg',
+      '/unidades/independencia/indep-supino.jpg',
+      '/unidades/independencia/indep-360.jpg',
     ],
     services: ['Musculação', 'Ginástica', 'Pilates (Valor à parte)', 'Natação (Valor à parte)', 'Lutas (Valor à parte)', 'Estacionamento', 'Wi-Fi', 'Hall de recepção', 'Banheiros e Vestiários'],
     schedule: [
@@ -29,10 +32,11 @@ const unitData: Record<string, any> = {
     name: 'Unidade Caramuru',
     address: 'Avenida Caramuru, 567 - Jardim Sumaré',
     photos: [
-      'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1521575107034-e3ffa9c07300?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=1200&q=80',
+      '/unidades/caramuru/caramuru frente drone.jpg',
+      '/unidades/caramuru/caramuru dentro.jpg',
+      '/unidades/caramuru/caramuru drone.jpg',
+      '/unidades/caramuru/caramuru fora.jpg',
+      '/unidades/caramuru/caramuru.jpg',
     ],
     services: ['Musculação', 'Ginástica', 'Estacionamento Grátis', 'Wi-Fi', 'Hall de recepção', 'Banheiros e Vestiários'],
     schedule: [
@@ -50,10 +54,13 @@ const unitData: Record<string, any> = {
     name: 'Unidade Novo Mundo',
     address: 'R. Dr. Morais Lima, 606 - Jardim Anhanguera',
     photos: [
-      'https://images.unsplash.com/photo-1593079831268-3381b0db4a77?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80',
+      '/unidades/novo-mundo/novo-mundo-fora.png',
+      '/unidades/novo-mundo/novo-mundo-dentro.jpg',
+      '/unidades/novo-mundo/novo-mundo-cima.jpg',
+      '/unidades/novo-mundo/novo-mundo-bike.jpg',
+      '/unidades/novo-mundo/novo-mundo-supino.jpg',
+      '/unidades/novo-mundo/novo-mundo-piscina.jpg',
+      '/unidades/novo-mundo/novo-mundo-piscina2.jpg',
     ],
     services: ['Musculação', 'Ginástica', 'Pilates (Valor à parte)', 'Natação (Valor à parte)', 'Wi-Fi', 'Hall de recepção', 'Banheiros e Vestiários'],
     schedule: [
@@ -70,10 +77,12 @@ const unitData: Record<string, any> = {
     name: 'Unidade Vila Tibério',
     address: 'R. Cel. Luiz da Cunha, 436 - Vila Tibério',
     photos: [
-      'https://images.unsplash.com/photo-1485886657642-1f3b7fbf24c0?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1518611012118-2969c636022d?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1576678927484-cc907957088c?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1593079831268-3381b0db4a77?auto=format&fit=crop&w=1200&q=80',
+      '/unidades/vila-tiberio/vilatiberio-frente.jpg',
+      '/unidades/vila-tiberio/vilatiberio.jpg',
+      '/unidades/vila-tiberio/vilatiberio-esteira.jpg',
+      '/unidades/vila-tiberio/vilatiberio-banheiro.jpg',
+      '/unidades/vila-tiberio/vilatiberio-vestiario-verde.jpg',
+      '/unidades/vila-tiberio/vilatiberio-miquitorio.jpg',
     ],
     services: ['Musculação', 'Ginástica', 'Estacionamento', 'Wi-Fi', 'Hall de recepção', 'Banheiros e Vestiários'],
     schedule: [
@@ -91,10 +100,12 @@ const unitData: Record<string, any> = {
     name: 'Unidade Campos Elíseos',
     address: 'R. Antônio Milena, 1449 - Campos Elíseos',
     photos: [
-      'https://images.unsplash.com/photo-1521575107034-e3ffa9c07300?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1590239926044-23678869796e?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=1200&q=80',
+      '/unidades/campos-eliseos/campos-eliseos-frente.jpg',
+      '/unidades/campos-eliseos/campos-eliseos-salao.jpg',
+      '/unidades/campos-eliseos/campos-eliseos-esteira.jpg',
+      '/unidades/campos-eliseos/campos-eliseos-maquina.jpg',
+      '/unidades/campos-eliseos/campos-eliseos-maquina2.jpg',
+      '/unidades/campos-eliseos/campos-eliseos-maquina3.jpg',
     ],
     services: ['Musculação', 'Ginástica', 'Wi-Fi', 'Hall de recepção', 'Banheiros e Vestiários'],
     schedule: [
@@ -157,7 +168,7 @@ export default function UnitDetail() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-4 tracking-tighter">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 tracking-tighter">
               <span className="text-brand-blue">UNIDADE </span>
               <span className="text-brand-green">{unit.name.replace('Unidade ', '')}</span>
             </h1>

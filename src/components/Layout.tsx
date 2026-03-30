@@ -3,6 +3,43 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Instagram, MessageCircle, Facebook, Menu, X, Phone } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
+const Logo = ({ className, footer }: { className?: string, footer?: boolean }) => (
+  <div className={`flex items-center ${footer ? 'justify-center' : ''}`}>
+    <svg 
+      viewBox="0 0 450 160" 
+      className={className || (footer ? "h-12 sm:h-20 w-auto" : "h-10 sm:h-14 w-auto")} 
+      fill="none" 
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {/* Text "atenas" */}
+      <text 
+        x="0" 
+        y="110" 
+        fill="#00AEEF" 
+        style={{ 
+          font: 'italic 900 110px sans-serif',
+          letterSpacing: '-6px'
+        }}
+      >
+        atenas
+      </text>
+      {/* Text "academia" */}
+      <text 
+        x="440" 
+        y="150" 
+        fill="#004A99" 
+        textAnchor="end"
+        style={{ 
+          font: 'italic 700 45px sans-serif',
+          letterSpacing: '1px'
+        }}
+      >
+        academia
+      </text>
+    </svg>
+  </div>
+);
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const location = useLocation();
@@ -50,9 +87,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <Link 
             to="/" 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="flex items-center gap-2 shrink-0"
+            className="shrink-0"
           >
-            <span className="font-display font-bold text-lg sm:text-xl tracking-tighter">ATENAS</span>
+            <Logo className="h-10 sm:h-12 w-auto" />
           </Link>
           
           <nav className="hidden lg:flex space-x-6 xl:space-x-8 font-medium uppercase text-[10px] xl:text-xs tracking-widest">
@@ -129,10 +166,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <Link 
             to="/" 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="text-2xl font-bold mb-6 tracking-tighter inline-block"
+            className="mb-8 inline-block"
           >
-            <span className="text-brand-blue">ACADEMIA </span>
-            <span className="text-brand-green">ATENAS</span>
+            <Logo className="h-12 sm:h-16 w-auto" footer />
           </Link>
           <p className="text-slate-500 text-sm mb-6 uppercase tracking-widest">
             © 2026 Academia Atenas. Todos os direitos reservados.

@@ -145,7 +145,7 @@ export default function Personal() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-6 tracking-tighter">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 tracking-tighter">
               Nossos <span className="text-brand-green italic">Personal Trainers</span>
             </h1>
             <p className="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto font-light">

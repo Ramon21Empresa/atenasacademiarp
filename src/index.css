@@ -1,12 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-brand-blue: #35c42d;
-  --color-brand-green: #0051a6;
+  --color-brand-blue: #004A99;
+  --color-brand-light-blue: #00AEEF;
+  --color-brand-green: #35c42d;
   --color-dark-bg: #020617;
   --color-dark-card: #0f172a;
   
-  --font-display: 'Syncopate', sans-serif;
+  --font-sans: 'Montserrat', sans-serif;
+  --font-display: 'Montserrat', sans-serif;
   --font-code: 'JetBrains Mono', monospace;
 }
 
@@ -37,5 +40,5 @@ body {
 }
 
 h1, h2, h3 {
-  @apply font-display;
+  @apply font-display font-black tracking-tight uppercase;
 }
