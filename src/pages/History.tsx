@@ -45,7 +45,7 @@ export default function History() {
   return (
     <div className="bg-darkBg overflow-hidden">
       {/* HERO SECTION */}
-      <section className="relative h-screen flex items-center overflow-hidden">
+      <section className="relative min-h-[60vh] sm:h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80" 
@@ -56,7 +56,7 @@ export default function History() {
           <div className="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-transparent"></div>
         </div>
         
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-6 relative z-10 pt-20">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -67,11 +67,11 @@ export default function History() {
               <span className="w-12 h-[2px] bg-brand-green"></span>
               <span className="text-brand-green font-black uppercase tracking-[0.3em] text-xs sm:text-sm">Tradição e Evolução</span>
             </div>
-            <h1 className="text-5xl sm:text-7xl md:text-8xl font-black mb-6 tracking-tighter uppercase leading-[0.9]">
+            <h1 className="text-4xl sm:text-7xl md:text-8xl font-black mb-6 tracking-tighter uppercase leading-[0.9]">
               NOSSA <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-light-blue italic">HISTÓRIA</span>
             </h1>
-            <p className="text-slate-400 max-w-xl text-lg sm:text-xl font-medium">
+            <p className="text-base sm:text-xl text-slate-400 max-w-xl font-medium">
               Mais de três décadas transformando vidas através do esporte e da saúde em Ribeirão Preto.
             </p>
           </motion.div>

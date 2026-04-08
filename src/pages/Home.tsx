@@ -53,11 +53,11 @@ export default function Home() {
   };
 
   const units = [
-    { id: 'independencia', name: 'Independência', address: 'R. Bolívia, 2095 - Ribeirão Preto', img: '/unidades/independencia/indep-frente.jpg', tags: ['Musculação', 'Ginástica', 'Climatizada'] },
-    { id: 'caramuru', name: 'Caramuru', address: 'Avenida Caramuru, 567 - Jardim Sumaré', img: '/unidades/caramuru/caramuru frente drone.jpg', tags: ['Premium', 'Musculação', 'Estacionamento'] },
-    { id: 'novo-mundo', name: 'Novo Mundo', address: 'R. Dr. Morais Lima, 606 - Jardim Anhanguera', img: '/unidades/novo-mundo/novo-mundo-fora.png', tags: ['Musculação', 'Ginástica'] },
-    { id: 'vila-tiberio', name: 'Vila Tibério', address: 'R. Cel. Luiz da Cunha, 436 - Vila Tibério', img: '/unidades/vila-tiberio/vilatiberio-frente.jpg', tags: ['Musculação', 'Ginástica', 'Estacionamento'] },
-    { id: 'campos-eliseos', name: 'Campos Elíseos', address: 'R. Antônio Milena, 1449 - Campos Elíseos', img: '/unidades/campos-eliseos/campos-eliseos-frente.jpg', tags: ['Premium', 'Musculação', 'Ginástica'] },
+    { id: 'independencia', name: 'Unidade Independência', address: 'R. Bolívia, 2095 - Ribeirão Preto', img: '/unidades/independencia/indep-frente.jpg', tags: ['Musculação', 'Ginástica', 'Climatizada'] },
+    { id: 'caramuru', name: 'Unidade Caramuru', address: 'Avenida Caramuru, 567 - Jardim Sumaré', img: '/unidades/caramuru/caramuru frente drone.jpg', tags: ['Premium', 'Musculação', 'Estacionamento'] },
+    { id: 'novo-mundo', name: 'Unidade Novo Mundo', address: 'R. Dr. Morais Lima, 606 - Jardim Anhanguera', img: '/unidades/novo-mundo/novo-mundo-fora.png', tags: ['Musculação', 'Ginástica'] },
+    { id: 'vila-tiberio', name: 'Unidade Vila Tibério', address: 'R. Cel. Luiz da Cunha, 436 - Vila Tibério', img: '/unidades/vila-tiberio/vilatiberio-frente.jpg', tags: ['Musculação', 'Ginástica', 'Estacionamento'] },
+    { id: 'campos-eliseos', name: 'Unidade Campos Elíseos', address: 'R. Antônio Milena, 1449 - Campos Elíseos', img: '/unidades/campos-eliseos/campos-eliseos-frente.jpg', tags: ['Premium', 'Musculação', 'Ginástica'] },
   ];
 
   const scrollToUnits = () => {
@@ -127,7 +127,7 @@ export default function Home() {
             
             <h1 className="text-4xl sm:text-7xl md:text-8xl font-black mb-6 sm:mb-8 leading-[0.9] tracking-tighter uppercase">
               ACADEMIA <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-light-blue">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-light-blue italic">
                 ATENAS
               </span>
             </h1>
@@ -417,18 +417,18 @@ export default function Home() {
             onMouseLeave={() => setActiveModality(null)}
           >
             {[
-              { name: 'Pilates', img: '/public/servicos/pilates-acedemia.jpg' },
-              { name: 'Natação', img: '/public/servicos/natacao-academia.png' },
-              { name: 'Ginástica', img: '/public/servicos/ginastica-academia.jpg' },
-              { name: 'Spinning', img: '/public/servicos/aula-spinning.jpg' },
-              { name: 'Jump', img: '/public/servicos/aula-jump-academia.jpg' },
-              { name: 'Step', img: '/public/servicos/aula-step-academia.jpg' },
-              { name: 'Ritmos', img: '/public/servicos/aula-ritmo-academia.jpg' },
-              { name: 'Pump', img: '/public/servicos/aula-pump-academia.jpg' },
-              { name: 'Alongamento', img: '/public/servicos/aula-alongamento-academia.jpg' },
-              { name: 'Cross Funcional', img: '/public/servicos/cross-funcional.jpg' },
-              { name: 'Ballet', img: '/public/servicos/ballet-academia.png' },
-              { name: 'Abdomem', img: '/public/servicos/local-abdomem-academia.jpg' },
+              { name: 'Pilates', img: '/servicos/pilates-acedemia.jpg' },
+              { name: 'Natação', img: '/servicos/natacao-academia.png' },
+              { name: 'Ginástica', img: '/servicos/ginastica-academia.jpg' },
+              { name: 'Spinning', img: '/servicos/aula-spinning.jpg' },
+              { name: 'Jump', img: '/servicos/aula-jump-academia.jpg' },
+              { name: 'Step', img: '/servicos/aula-step-academia.jpg' },
+              { name: 'Ritmos', img: '/servicos/aula-ritmo-academia.jpg' },
+              { name: 'Pump', img: '/servicos/aula-pump-academia.jpg' },
+              { name: 'Alongamento', img: '/servicos/aula-alongamento-academia.jpg' },
+              { name: 'Cross Funcional', img: '/servicos/cross-funcional.jpg' },
+              { name: 'Ballet', img: '/servicos/ballet-academia.png' },
+              { name: 'Abdomem', img: '/servicos/local-abdomem-academia.jpg' },
             ].map((modality, index) => (
               <motion.div
                 key={index}

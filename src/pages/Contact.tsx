@@ -55,16 +55,16 @@ export default function Contact() {
   return (
     <div className="pt-24 pb-20">
       {/* HERO SECTION */}
-      <section className="relative py-20 bg-darkCard/30">
+      <section className="relative py-12 sm:py-20 bg-darkCard/30">
         <div className="absolute inset-0 z-0 opacity-10">
           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--color-brand-blue)_0%,_transparent_70%)]" />
         </div>
         
-        <div className="container mx-auto px-6 relative z-10 text-center">
+        <div className="container mx-auto px-6 relative z-10 text-center pt-12 sm:pt-0">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl mb-6"
+            className="text-3xl sm:text-4xl md:text-6xl mb-4 sm:mb-6 font-black uppercase tracking-tighter"
           >
             Entre em Contato <span className="text-brand-green italic">Conosco</span>
           </motion.h1>
@@ -72,7 +72,7 @@ export default function Contact() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-slate-400 max-w-2xl mx-auto text-lg"
+            className="text-slate-400 max-w-2xl mx-auto text-sm sm:text-lg font-medium"
           >
             Dúvidas, sugestões ou propostas de trabalho? Estamos prontos para ouvir você.
           </motion.p>
@@ -240,41 +240,41 @@ export default function Contact() {
             </motion.div>
 
             {/* CONTACT INFO */}
-            <div className="space-y-12">
+            <div className="space-y-8 sm:space-y-12">
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-2xl mb-8">Nossos <span className="text-brand-blue">Canais</span></h2>
+                <h2 className="text-xl sm:text-2xl mb-6 sm:mb-8 font-black uppercase tracking-tight">Nossos <span className="text-brand-blue">Canais</span></h2>
                 
-                <div className="grid sm:grid-cols-1 gap-8">
+                <div className="grid grid-cols-1 gap-6 sm:gap-8">
                   <div className="bg-darkCard/20 p-6 rounded-3xl border border-white/5 flex items-center gap-6">
-                    <div className="w-16 h-16 bg-brand-green/10 rounded-2xl flex items-center justify-center shrink-0">
-                      <Mail className="text-brand-green" size={32} />
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-brand-green/10 rounded-2xl flex items-center justify-center shrink-0">
+                      <Mail className="text-brand-green" size={24} />
                     </div>
                     <div>
-                      <h4 className="font-bold mb-1 text-lg">E-mail Geral</h4>
-                      <a href="mailto:atendimento@academiaatenas.com.br" className="text-brand-blue text-sm hover:underline break-all">
+                      <h4 className="font-bold mb-1 text-base sm:text-lg uppercase tracking-tight">E-mail Geral</h4>
+                      <a href="mailto:atendimento@academiaatenas.com.br" className="text-brand-blue text-[10px] sm:text-sm hover:underline break-all font-bold">
                         atendimento@academiaatenas.com.br
                       </a>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-8 flex gap-4">
+                <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-4">
                   <a href="https://instagram.com/atenasacademia" target="_blank" rel="noopener noreferrer" className="flex-1 bg-darkCard/20 p-6 rounded-3xl border border-white/5 flex items-center gap-4 hover:border-brand-green/30 transition-all group">
                     <Instagram className="text-slate-400 group-hover:text-brand-green transition-colors" size={24} />
                     <div>
-                      <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Instagram</p>
-                      <p className="text-sm font-bold">@atenasacademia</p>
+                      <p className="text-[9px] sm:text-[10px] uppercase tracking-widest text-slate-500 font-bold">Instagram</p>
+                      <p className="text-xs sm:text-sm font-bold">@atenasacademia</p>
                     </div>
                   </a>
                   <a href="https://facebook.com/atenasacademia.oficial" target="_blank" rel="noopener noreferrer" className="flex-1 bg-darkCard/20 p-6 rounded-3xl border border-white/5 flex items-center gap-4 hover:border-brand-green/30 transition-all group">
                     <Facebook className="text-slate-400 group-hover:text-brand-green transition-colors" size={24} />
                     <div>
-                      <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Facebook</p>
-                      <p className="text-sm font-bold">@atenasacademia</p>
+                      <p className="text-[9px] sm:text-[10px] uppercase tracking-widest text-slate-500 font-bold">Facebook</p>
+                      <p className="text-xs sm:text-sm font-bold">@atenasacademia</p>
                     </div>
                   </a>
                 </div>
@@ -284,12 +284,12 @@ export default function Contact() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="bg-brand-green/5 p-8 rounded-[2.5rem] border border-brand-green/10"
+                className="bg-brand-green/5 p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] border border-brand-green/10"
               >
-                <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
+                <h3 className="text-lg sm:text-xl font-black mb-6 flex items-center gap-2 uppercase tracking-tight">
                   <MessageCircle className="text-brand-green" size={24} /> WhatsApp por Unidade
                 </h3>
-                <div className="grid gap-4">
+                <div className="grid gap-3 sm:gap-4">
                   {units.map((unit) => (
                     <a 
                       key={unit.name}
@@ -300,9 +300,9 @@ export default function Contact() {
                     >
                       <div className="flex items-center gap-3">
                         <MapPin size={16} className="text-brand-green" />
-                        <span className="text-sm font-bold">{unit.name}</span>
+                        <span className="text-xs sm:text-sm font-bold uppercase tracking-tight">{unit.name}</span>
                       </div>
-                      <span className="text-xs font-mono text-slate-400 group-hover:text-brand-green transition-colors">{unit.whatsapp}</span>
+                      <span className="text-[10px] sm:text-xs font-mono text-slate-400 group-hover:text-brand-green transition-colors">{unit.whatsapp}</span>
                     </a>
                   ))}
                 </div>
