@@ -1,20 +1,43 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Academia Atenas - Website
 
-# Run and deploy your AI Studio app
+Este é o projeto do website da Academia Atenas, desenvolvido com React, Vite e Tailwind CSS.
 
-This contains everything you need to run your app locally.
+## Como executar localmente (VS Code)
 
-View your app in AI Studio: https://ai.studio/apps/d68a3a0d-a54d-4b8d-979c-510c3b1b31f3
+Para rodar este projeto em sua máquina local, siga os passos abaixo:
 
-## Run Locally
+### Pré-requisitos
 
-**Prerequisites:**  Node.js
+- **Node.js** (versão 18 ou superior recomendada)
+- **npm** (instalado junto com o Node.js)
 
+### Passo a Passo
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+1.  **Clone o projeto ou baixe os arquivos.**
+2.  **Abra a pasta do projeto no VS Code.**
+3.  **Abra o terminal integrado** (Ctrl + ` ou Terminal > New Terminal).
+4.  **Instale as dependências:**
+    ```bash
+    npm install
+    ```
+5.  **Inicie o servidor de desenvolvimento:**
+    ```bash
+    npm run dev
+    ```
+6.  **Acesse o site:**
+    O terminal mostrará um link (geralmente `http://localhost:3000`). Clique nele para abrir no seu navegador.
+
+## Estrutura do Projeto
+
+- `src/pages/`: Contém as páginas principais (Home, Unidades, etc).
+- `src/components/`: Componentes reutilizáveis (Layout, FloatingCTA, etc).
+- `src/constants.ts`: Centraliza dados como contatos das unidades.
+- `src/index.css`: Estilos globais e configuração do Tailwind.
+
+## Tecnologias Utilizadas
+
+- **React 19**
+- **Vite** (Build tool rápida)
+- **Tailwind CSS** (Estilização utilitária)
+- **Motion** (Animações fluidas)
+- **Lucide React** (Ícones)

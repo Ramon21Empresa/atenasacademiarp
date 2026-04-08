@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { Link } from 'react-router-dom';
-import { Dumbbell, PersonStanding, Sparkles, Flame, Apple, Droplets, ArrowRight, MapPin, Phone, Mail, Instagram, Facebook, CheckCircle2, QrCode, CreditCard, Banknote, Wifi, Waves } from 'lucide-react';
+import { Dumbbell, PersonStanding, Sparkles, Flame, Apple, Droplets, ArrowRight, MapPin, CheckCircle2, QrCode, CreditCard, Banknote, Wifi, Waves, Clock, Star, Zap, ChevronRight } from 'lucide-react';
 
 export default function Home() {
   const phrases = [
-    "A consistência é mais importante do que a intensidade no treino.",
-    "Hoje foi dia de treino pesado, foco total!",
-    "Sem disciplina, não há resultado.",
-    "Cada repetição te deixa mais próximo do seu objetivo.",
-    "O corpo alcança o que a mente acredita.",
-    "Treine cansado, mas nunca desista.",
-    "Resultados vêm para quem não desiste no meio do caminho.",
-    "Dor de hoje, força de amanhã.",
-    "Não é sobre ser melhor que os outros, é sobre ser melhor que ontem.",
-    "O único treino ruim é aquele que você não fez."
+    "A consistência é o segredo do resultado.",
+    "Treine com os melhores equipamentos.",
+    "Sua transformação começa agora.",
+    "Foco total nos seus objetivos.",
+    "A maior rede de academias da região."
   ];
 
-  const rotatingWords = ['ATENAS', 'SAÚDE', 'ATENAS', 'FORÇA', 'ATENAS', 'DISCIPLINA', 'ATENAS', 'TRANSFORMAÇÃO', 'ATENAS', 'SUPERAÇÃO', 'ATENAS', 'BEM ESTAR'];
+  const rotatingWords = ['ATENAS'];
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
   const [wordIndex, setWordIndex] = useState(0);
+
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const scale = useTransform(scrollY, [0, 300], [1, 0.9]);
 
   useEffect(() => {
     const phraseInterval = setInterval(() => {
@@ -36,12 +36,28 @@ export default function Home() {
     };
   }, [phrases.length, rotatingWords.length]);
 
+  const heroImages = [
+    "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80",
+    "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1920&q=80",
+    "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=1920&q=80",
+    "https://images.unsplash.com/photo-1593079831268-3381b0db4a77?auto=format&fit=crop&w=1920&q=80"
+  ];
+
+  const [heroImageIndex, setHeroImageIndex] = useState(0);
+  const [activeModality, setActiveModality] = useState<number | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const { scrollXProgress } = useScroll({ container: scrollRef });
+
+  const nextHeroImage = () => {
+    setHeroImageIndex((prev) => (prev + 1) % heroImages.length);
+  };
+
   const units = [
-    { id: 'independencia', name: 'Unidade Independencia', address: 'R. Bolívia, 2095 - Ribeirão Preto', desc: 'Estrutura completa com musculação climatizada, estacionamento, Wi-Fi, hall de recepção e banheiros com vestiários.', img: '/unidades/independencia/indep-frente.jpg' },
-    { id: 'caramuru', name: 'Unidade Caramuru', address: 'Avenida Caramuru, 567 - Jardim Sumaré', desc: 'Equipamentos de última geração, estacionamento gratuito, Wi-Fi, hall de recepção e banheiros com vestiários.', img: '/unidades/caramuru/caramuru frente drone.jpg' },
-    { id: 'novo-mundo', name: 'Unidade Novo Mundo', address: 'R. Dr. Morais Lima, 606 - Jardim Anhanguera', desc: 'Foco em musculação e ginástica, Wi-Fi, hall de recepção e banheiros com vestiários.', img: '/unidades/novo-mundo/novo-mundo-fora.png' },
-    { id: 'vila-tiberio', name: 'Unidade Vila Tibério', address: 'R. Cel. Luiz da Cunha, 436 - Vila Tibério', desc: 'Musculação, ginástica, estacionamento, Wi-Fi, hall de recepção e banheiros com vestiários.', img: '/unidades/vila-tiberio/vilatiberio-frente.jpg' },
-    { id: 'campos-eliseos', name: 'Unidade Campos Elíseos', address: 'R. Antônio Milena, 1449 - Campos Elíseos', desc: 'Ambiente premium com musculação, ginástica, Wi-Fi, hall de recepção e banheiros com vestiários.', img: '/unidades/campos-eliseos/campos-eliseos-frente.jpg' },
+    { id: 'independencia', name: 'Independência', address: 'R. Bolívia, 2095 - Ribeirão Preto', img: '/unidades/independencia/indep-frente.jpg', tags: ['Musculação', 'Ginástica', 'Climatizada'] },
+    { id: 'caramuru', name: 'Caramuru', address: 'Avenida Caramuru, 567 - Jardim Sumaré', img: '/unidades/caramuru/caramuru frente drone.jpg', tags: ['Premium', 'Musculação', 'Estacionamento'] },
+    { id: 'novo-mundo', name: 'Novo Mundo', address: 'R. Dr. Morais Lima, 606 - Jardim Anhanguera', img: '/unidades/novo-mundo/novo-mundo-fora.png', tags: ['Musculação', 'Ginástica'] },
+    { id: 'vila-tiberio', name: 'Vila Tibério', address: 'R. Cel. Luiz da Cunha, 436 - Vila Tibério', img: '/unidades/vila-tiberio/vilatiberio-frente.jpg', tags: ['Musculação', 'Ginástica', 'Estacionamento'] },
+    { id: 'campos-eliseos', name: 'Campos Elíseos', address: 'R. Antônio Milena, 1449 - Campos Elíseos', img: '/unidades/campos-eliseos/campos-eliseos-frente.jpg', tags: ['Premium', 'Musculação', 'Ginástica'] },
   ];
 
   const scrollToUnits = () => {
@@ -53,210 +69,243 @@ export default function Home() {
   };
 
   const services = [
-    { icon: <Dumbbell className="text-brand-green" size={40} />, title: 'Musculação', desc: 'Equipamentos modernos com acompanhamento de treinadores especializados em ganho de massa e força.' },
-    { icon: <Sparkles className="text-brand-green" size={40} />, title: 'Pilates', desc: 'Aulas de flexibilidade, equilíbrio e fortalecimento do core com instrutores certificados.' },
-    { icon: <Flame className="text-brand-green" size={40} />, title: 'Ginástica', desc: 'Aulas dinâmicas e motivadoras para melhorar seu condicionamento físico e queimar calorias.' },
-    { icon: <Waves className="text-brand-green" size={40} />, title: 'Natação', desc: 'Piscina climatizada para treinos de natação e atividades aquáticas para todas as idades.' },
-    { icon: <Droplets className="text-brand-green" size={40} />, title: 'Banheiros e vestiários', desc: 'Infraestrutura completa com chuveiros e armários para sua comodidade pós-treino.' },
-    { icon: <Wifi className="text-brand-green" size={40} />, title: 'Wifi', desc: 'Conectividade gratuita em todas as nossas unidades para você treinar sempre conectado.' },
-    { icon: <PersonStanding className="text-brand-green" size={40} />, title: 'Cardio e Aeróbica', desc: 'Área com esteiras, bicicletas e elípticos para melhorar sua resistência cardiovascular.' },
-    { icon: <Apple className="text-brand-green" size={40} />, title: 'Hall de recepção', desc: 'Ambiente acolhedor e profissional para receber nossos alunos com todo conforto.' },
+    { icon: <Dumbbell className="text-brand-green" size={32} />, title: 'Musculação', desc: 'Equipamentos de última geração.' },
+    { icon: <Sparkles className="text-brand-green" size={32} />, title: 'Pilates', desc: 'Equilíbrio e fortalecimento.' },
+    { icon: <Flame className="text-brand-green" size={32} />, title: 'Ginástica', desc: 'Aulas dinâmicas e motivadoras.' },
+    { icon: <Waves className="text-brand-green" size={32} />, title: 'Natação', desc: 'Piscina climatizada.' },
+    { icon: <Droplets className="text-brand-green" size={32} />, title: 'Vestiários', desc: 'Estrutura completa e higienizada.' },
+    { icon: <Wifi className="text-brand-green" size={32} />, title: 'Wi-Fi Grátis', desc: 'Treine sempre conectado.' },
+    { icon: <PersonStanding className="text-brand-green" size={32} />, title: 'Cardio', desc: 'Área aeróbica completa.' },
+    { icon: <Apple className="text-brand-green" size={32} />, title: 'Recepção', desc: 'Atendimento profissional.' },
   ];
 
   return (
-    <div>
+    <div className="bg-darkBg">
       {/* HERO SECTION */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://assets-cdn.wellhub.com/images/?su=https%3A%2F%2Fimages.partners.gympass.com%2Fimage%2Fpartners%2F4d96cfe7-bef4-4903-b6e5-75b73a1dc630%2Flg_32e030d7-21db-4913-af71-6b35e2430168_2666242.jpg&h=360" 
-            className="w-full h-full object-cover opacity-30"
-            alt="Gym Background"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-darkBg/80 via-darkBg/50 to-darkBg"></div>
+          <AnimatePresence mode="wait">
+            <motion.img 
+              key={heroImageIndex}
+              src={heroImages[heroImageIndex]} 
+              initial={{ opacity: 0, scale: 1.1 }}
+              animate={{ opacity: 0.4, scale: 1.05 }}
+              exit={{ opacity: 0, scale: 1 }}
+              transition={{ duration: 1.5 }}
+              className="w-full h-full object-cover"
+              alt="Gym Background"
+            />
+          </AnimatePresence>
+          {/* Blur/Gradient effect from middle to left */}
+          <div className="absolute inset-0 bg-gradient-to-r from-darkBg via-darkBg/80 to-transparent w-full md:w-3/4 lg:w-2/3 backdrop-blur-[2px]"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-transparent"></div>
         </div>
 
-        <div className="relative z-10 max-w-4xl mx-auto text-center px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+        {/* Hero Carousel Button - Middle Right */}
+        <div className="absolute right-6 sm:right-12 top-1/2 -translate-y-1/2 z-30">
+          <button 
+            onClick={nextHeroImage}
+            className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-brand-green hover:border-brand-green transition-all group shadow-xl"
+            title="Próxima Imagem"
           >
-            <h1 
-              className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-8 tracking-tighter relative block select-none w-full"
-              style={{
-                color: '#ffffff',
-                textShadow: `
-                  0 1px 0 #ccc, 
-                  0 2px 0 #c9c9c9, 
-                  0 3px 0 #bbb, 
-                  0 4px 0 #b9b9b9, 
-                  0 5px 0 #aaa, 
-                  0 6px 1px rgba(0,0,0,.1), 
-                  0 0 5px rgba(0,0,0,.1), 
-                  0 1px 3px rgba(0,0,0,.3), 
-                  0 3px 5px rgba(0,0,0,.2), 
-                  0 5px 10px rgba(0,0,0,.25), 
-                  0 10px 10px rgba(0,0,0,.2), 
-                  0 20px 20px rgba(0,0,0,.15)
-                `
-              }}
-            >
-              <div className="relative flex justify-center items-center min-h-[1.2em]">
-                <AnimatePresence>
-                  <motion.span
-                    key={wordIndex}
-                    initial={{ opacity: 0, scale: 0.5, zIndex: 0 }}
-                    animate={{ opacity: 1, scale: 1, zIndex: 10 }}
-                    exit={{ opacity: 0, scale: 1.5, zIndex: 0, filter: 'blur(10px)' }}
-                    transition={{ 
-                      duration: 1.2,
-                      ease: "easeInOut"
-                    }}
-                    className="absolute left-0 right-0 mx-auto text-center"
-                  >
-                    {rotatingWords[wordIndex]}
-                  </motion.span>
-                </AnimatePresence>
-                {/* Spacer to maintain layout height/width based on longest word */}
-                <span className="invisible pointer-events-none px-4">TRANSFORMAÇÃO</span>
-              </div>
+            <ChevronRight size={24} className="group-hover:translate-x-1 transition-transform" />
+          </button>
+        </div>
+
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div
+            style={{ y: y1, opacity, scale }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-3xl"
+          >
+            <div className="flex items-center gap-2 mb-6">
+              <span className="w-12 h-[2px] bg-brand-green"></span>
+              <span className="text-brand-green font-black uppercase tracking-[0.3em] text-xs sm:text-sm">Seja sua melhor versão</span>
+            </div>
+            
+            <h1 className="text-5xl sm:text-7xl md:text-8xl font-black mb-8 leading-[0.9] tracking-tighter uppercase">
+              ACADEMIA <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-light-blue">
+                ATENAS
+              </span>
             </h1>
-            <div className="min-h-[6rem] md:min-h-[7rem] flex items-center justify-center mb-10 overflow-hidden">
+
+            <div className="min-h-[3rem] mb-10">
               <AnimatePresence mode="wait">
                 <motion.p
                   key={currentPhraseIndex}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5 }}
-                  className="text-xl md:text-2xl text-slate-300 font-light tracking-wide max-w-2xl"
+                  exit={{ opacity: 0, y: -10 }}
+                  className="text-lg sm:text-xl text-slate-300 font-medium max-w-xl"
                 >
-                  {phrases[currentPhraseIndex].split(' ').map((word, i) => {
-                    const cleanWord = word.toLowerCase().replace(/[.,!]/g, '');
-                    const isHighlighted = ['consistência', 'disciplina', 'resultado', 'resultados', 'objetivo', 'foco', 'força', 'mente'].includes(cleanWord);
-                    return (
-                      <span key={i} className={isHighlighted ? "text-brand-green font-bold italic" : ""}>
-                        {word}{' '}
-                      </span>
-                    );
-                  })}
+                  {phrases[currentPhraseIndex]}
                 </motion.p>
               </AnimatePresence>
             </div>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button onClick={scrollToUnits} className="bg-brand-green text-white px-10 py-4 rounded-full font-bold hover:scale-105 transition-transform uppercase tracking-widest text-sm">
-                Explore Nossas Unidades
+
+            <div className="flex flex-col sm:flex-row gap-4">
+              <button 
+                onClick={scrollToPlans}
+                className="bg-brand-green text-white px-10 py-5 rounded-full font-black hover:bg-brand-green/90 transition-all uppercase tracking-widest text-xs flex items-center justify-center gap-3 shadow-xl shadow-brand-green/20"
+              >
+                ESCOLHER MEU PLANO <Zap size={18} />
               </button>
-              <button onClick={scrollToPlans} className="border-2 border-brand-blue text-brand-blue px-10 py-4 rounded-full font-bold hover:bg-brand-blue hover:text-black transition-all uppercase tracking-widest text-sm">
-                Ver Planos
+              <button 
+                onClick={scrollToUnits}
+                className="glass text-white px-10 py-5 rounded-full font-black hover:bg-white/10 transition-all uppercase tracking-widest text-xs flex items-center justify-center gap-3"
+              >
+                VER UNIDADES <MapPin size={18} />
               </button>
             </div>
           </motion.div>
         </div>
       </section>
 
+      {/* QUICK STATS */}
+      <section className="py-12 border-y border-white/5 bg-darkCard/30">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <p className="text-3xl sm:text-4xl font-black text-brand-blue mb-1">05</p>
+              <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Unidades</p>
+            </div>
+            <div className="text-center">
+              <p className="text-3xl sm:text-4xl font-black text-brand-green mb-1">+10</p>
+              <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Modalidades</p>
+            </div>
+            <div className="text-center">
+              <p className="text-3xl sm:text-4xl font-black text-brand-blue mb-1">100%</p>
+              <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Equipada</p>
+            </div>
+            <div className="text-center">
+              <p className="text-3xl sm:text-4xl font-black text-brand-green mb-1">20+</p>
+              <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Profissionais</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* SEÇÃO PLANOS */}
-      <section id="planos" className="py-20 md:py-32 container mx-auto px-6">
-        <div className="text-center mb-16 md:mb-20">
-          <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-4 tracking-tighter">
+      <section id="planos" className="py-24 container mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl sm:text-6xl font-black mb-4 tracking-tighter">
             NOSSOS <span className="text-brand-green">PLANOS</span>
           </h2>
-          <p className="text-slate-500 uppercase tracking-[0.2em] text-[10px] sm:text-xs">Escolha a melhor opção para sua rotina</p>
+          <p className="text-slate-500 uppercase tracking-[0.2em] text-xs font-bold">Escolha o plano ideal para você</p>
         </div>
 
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* PLANO MENSAL */}
           <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-darkCard/40 p-8 sm:p-12 rounded-[2.5rem] border border-white/5 hover:border-brand-blue/30 transition-all group"
+            className="bg-darkCard p-8 sm:p-12 rounded-[2.5rem] border border-white/5 flex flex-col h-full card-hover"
           >
-            <h3 className="text-2xl font-bold mb-2 text-brand-blue">PLANO MENSAL</h3>
-            <div className="flex items-baseline gap-1 mb-8">
-              <span className="text-4xl font-mono font-bold">R$ 165,00</span>
-              <span className="text-slate-500 text-sm">/mês</span>
+            <div className="mb-8">
+              <h3 className="text-2xl font-black mb-2 text-brand-blue uppercase">PLANO MENSAL</h3>
+              <div className="flex items-baseline gap-1">
+                <span className="text-sm font-bold text-white">R$</span>
+                <span className="text-6xl font-black text-white">165</span>
+                <span className="text-xl font-bold text-white">,00</span>
+                <span className="text-slate-500 text-sm ml-2">/mês</span>
+              </div>
             </div>
-            <ul className="space-y-4 mb-8">
-              <li className="flex items-center gap-3 text-slate-300 text-sm sm:text-base">
-                <CheckCircle2 size={20} className="text-brand-green shrink-0" />
+
+            <ul className="space-y-4 mb-10">
+              <li className="flex items-center gap-3 text-slate-300 text-sm">
+                <CheckCircle2 size={18} className="text-brand-green shrink-0" />
                 Musculação e Ginástica inclusas
               </li>
-              <li className="flex items-center gap-3 text-slate-300 text-sm sm:text-base">
-                <CheckCircle2 size={20} className="text-brand-green shrink-0" />
+              <li className="flex items-center gap-3 text-slate-300 text-sm">
+                <CheckCircle2 size={18} className="text-brand-green shrink-0" />
                 Treino na unidade cadastrada
               </li>
-              <li className="flex items-center gap-3 text-slate-300 text-sm sm:text-base">
-                <CheckCircle2 size={20} className="text-brand-green shrink-0" />
+              <li className="flex items-center gap-3 text-slate-300 text-sm">
+                <CheckCircle2 size={18} className="text-brand-green shrink-0" />
                 Sem taxa de cancelamento
               </li>
             </ul>
-            
-            <div className="mb-10 p-5 bg-white/5 rounded-2xl border border-white/5">
-              <p className="text-[10px] uppercase tracking-widest text-slate-500 mb-4 font-bold">Formas de Pagamento</p>
-              <div className="flex flex-wrap gap-6">
-                <div className="flex flex-col items-center gap-2 text-brand-green">
-                  <QrCode size={20} />
-                  <span className="text-[9px] font-bold uppercase tracking-tighter">PIX</span>
+
+            {/* Payment Methods Box */}
+            <div className="bg-black/40 p-6 rounded-2xl border border-white/5 mb-8">
+              <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-4">FORMAS DE PAGAMENTO</p>
+              <div className="flex gap-6 mb-4">
+                <div className="flex flex-col items-center gap-1">
+                  <QrCode size={20} className="text-brand-green" />
+                  <span className="text-[8px] font-black text-brand-green uppercase">PIX</span>
                 </div>
-                <div className="flex flex-col items-center gap-2 text-brand-green">
-                  <CreditCard size={20} />
-                  <span className="text-[9px] font-bold uppercase tracking-tighter">Cartão</span>
+                <div className="flex flex-col items-center gap-1">
+                  <CreditCard size={20} className="text-brand-green" />
+                  <span className="text-[8px] font-black text-brand-green uppercase">CARTÃO</span>
                 </div>
-                <div className="flex flex-col items-center gap-2 text-brand-green">
-                  <Banknote size={20} />
-                  <span className="text-[9px] font-bold uppercase tracking-tighter">Dinheiro</span>
+                <div className="flex flex-col items-center gap-1">
+                  <Banknote size={20} className="text-brand-green" />
+                  <span className="text-[8px] font-black text-brand-green uppercase">DINHEIRO</span>
                 </div>
               </div>
-              <p className="text-[10px] text-slate-400 mt-4 italic">Aceitamos Crédito, Débito, PIX ou Dinheiro</p>
+              <p className="text-[10px] text-slate-500 italic">Aceitamos Crédito, Débito, PIX ou Dinheiro</p>
             </div>
-            <button onClick={scrollToUnits} className="w-full py-4 bg-white/5 border border-white/10 text-white font-bold rounded-2xl hover:bg-brand-blue hover:text-black transition-all uppercase tracking-widest text-xs">
+            
+            <button onClick={scrollToUnits} className="w-full py-5 bg-white/5 border border-white/10 text-white font-black rounded-2xl hover:bg-white/10 transition-all uppercase tracking-widest text-xs mt-auto">
               SELECIONAR UNIDADE
             </button>
           </motion.div>
 
           {/* PLANO RECORRENTE */}
           <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-brand-blue/5 p-8 sm:p-12 rounded-[2.5rem] border-2 border-brand-blue relative overflow-hidden group"
+            className="bg-brand-blue/5 p-8 sm:p-12 rounded-[2.5rem] border-2 border-brand-blue relative overflow-hidden flex flex-col h-full card-hover"
           >
-            <div className="absolute top-6 right-6 bg-brand-blue text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-tighter">
+            <div className="absolute top-6 right-6 bg-brand-blue text-black px-4 py-1.5 font-black text-[9px] uppercase tracking-widest rounded-full">
               MAIS VANTAJOSO
             </div>
-            <h3 className="text-2xl font-bold mb-2 text-brand-blue">PLANO RECORRENTE</h3>
-            <div className="flex items-baseline gap-1 mb-8">
-              <span className="text-4xl font-mono font-bold">R$ 129,00</span>
-              <span className="text-slate-500 text-sm">/mês</span>
+
+            <div className="mb-8">
+              <h3 className="text-2xl font-black mb-2 text-brand-blue uppercase">PLANO RECORRENTE</h3>
+              <div className="flex items-baseline gap-1">
+                <span className="text-sm font-bold text-white">R$</span>
+                <span className="text-6xl font-black text-white">129</span>
+                <span className="text-xl font-bold text-white">,00</span>
+                <span className="text-slate-500 text-sm ml-2">/mês</span>
+              </div>
             </div>
-            <ul className="space-y-4 mb-8">
-              <li className="flex items-center gap-3 text-slate-300 text-sm sm:text-base">
-                <CheckCircle2 size={20} className="text-brand-green shrink-0" />
+
+            <ul className="space-y-4 mb-10">
+              <li className="flex items-center gap-3 text-slate-300 text-sm">
+                <CheckCircle2 size={18} className="text-brand-green shrink-0" />
                 Musculação e Ginástica inclusas
               </li>
-              <li className="flex items-center gap-3 text-white font-bold text-sm sm:text-base">
-                <CheckCircle2 size={20} className="text-brand-green shrink-0" />
+              <li className="flex items-center gap-3 text-white font-bold text-sm">
+                <CheckCircle2 size={18} className="text-brand-green shrink-0" />
                 Acesso a TODAS as unidades da rede
               </li>
-              <li className="flex items-center gap-3 text-slate-300 text-sm sm:text-base">
-                <CheckCircle2 size={20} className="text-brand-green shrink-0" />
+              <li className="flex items-center gap-3 text-slate-300 text-sm">
+                <CheckCircle2 size={18} className="text-brand-green shrink-0" />
                 Débito automático (Recorrente)
               </li>
             </ul>
 
-            <div className="mb-10 p-5 bg-brand-blue/10 rounded-2xl border border-brand-blue/20">
-              <p className="text-[10px] uppercase tracking-widest text-brand-blue mb-4 font-bold">Forma de Pagamento</p>
-              <div className="flex items-center gap-3 text-white">
-                <CreditCard size={24} className="text-brand-blue" />
+            {/* Payment Methods Box */}
+            <div className="bg-brand-blue/10 p-6 rounded-2xl border border-brand-blue/20 mb-8">
+              <p className="text-[10px] uppercase tracking-widest text-brand-blue font-bold mb-4">FORMA DE PAGAMENTO</p>
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-xl bg-brand-blue/20 flex items-center justify-center">
+                  <CreditCard size={20} className="text-brand-blue" />
+                </div>
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-tight">Somente Cartão de Crédito</p>
-                  <p className="text-[10px] text-slate-400 italic">Cadastro automático e cobrança mensal</p>
+                  <p className="text-xs font-black text-white uppercase tracking-tight">SOMENTE CARTÃO DE CRÉDITO</p>
+                  <p className="text-[10px] text-slate-500">Cadastro automático e cobrança mensal</p>
                 </div>
               </div>
             </div>
-            <button onClick={scrollToUnits} className="w-full py-4 bg-brand-blue text-black font-bold rounded-2xl hover:scale-[1.02] transition-all uppercase tracking-widest text-xs">
+            
+            <button onClick={scrollToUnits} className="w-full py-5 bg-brand-blue text-black font-black rounded-2xl hover:scale-[1.02] transition-all uppercase tracking-widest text-xs shadow-lg shadow-brand-blue/20 mt-auto">
               SELECIONAR UNIDADE
             </button>
           </motion.div>
@@ -264,190 +313,194 @@ export default function Home() {
       </section>
 
       {/* SEÇÃO UNIDADES */}
-      <section id="unidades" className="py-20 md:py-32 container mx-auto px-6">
-        <div className="text-center mb-16 md:mb-20">
-          <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-4 tracking-tighter">
-            NOSSAS <span className="text-brand-blue">UNIDADES</span>
-          </h2>
-          <div className="w-20 h-1 bg-brand-green mx-auto"></div>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {units.map((unit, index) => (
-            <motion.div 
-              key={unit.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="group bg-darkCard/40 rounded-2xl overflow-hidden border border-white/5 hover:border-brand-green/50 transition-all duration-500"
-            >
-              <div className="relative h-48 sm:h-56 overflow-hidden">
-                <img src={unit.img} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={unit.name} />
-                <div className="absolute inset-0 bg-gradient-to-t from-darkCard to-transparent opacity-60"></div>
-              </div>
-              <div className="p-6 sm:p-8">
-                <h3 className="text-xl sm:text-2xl font-bold mb-2 group-hover:text-brand-green transition-colors">{unit.name}</h3>
-                <a 
-                  href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(unit.address)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[10px] sm:text-xs text-brand-green font-mono mb-4 flex items-center gap-2 hover:underline hover:text-brand-green/80 transition-all"
-                >
-                  <MapPin size={14} /> {unit.address}
-                </a>
-                <p className="text-slate-400 text-xs sm:text-sm mb-6 sm:mb-8 leading-relaxed">{unit.desc}</p>
-                <Link to={`/unidade/${unit.id}`} className="w-full py-3 sm:py-4 bg-brand-green/10 text-brand-green border border-brand-green/20 font-bold rounded-xl hover:bg-brand-green hover:text-white transition-all duration-300 flex items-center justify-center gap-2 uppercase tracking-widest text-[10px] sm:text-xs">
-                  VER DETALHES <ArrowRight size={16} />
-                </Link>
-              </div>
-            </motion.div>
-          ))}
+      <section id="unidades" className="py-24 bg-darkCard/20">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div>
+              <h2 className="text-4xl sm:text-6xl font-black mb-4 tracking-tighter">
+                NOSSAS <span className="text-brand-blue">UNIDADES</span>
+              </h2>
+              <p className="text-slate-500 uppercase tracking-[0.2em] text-xs font-bold">Encontre a Atenas mais próxima de você</p>
+            </div>
+            <div className="hidden md:block">
+              <div className="w-32 h-[2px] bg-brand-green"></div>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {units.map((unit, index) => (
+              <motion.div 
+                key={unit.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="group bg-darkCard rounded-[2rem] overflow-hidden border border-white/5 hover:border-brand-green/30 transition-all duration-500 flex flex-col"
+              >
+                <div className="relative h-64 overflow-hidden">
+                  <img src={unit.img} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={unit.name} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-darkCard via-transparent to-transparent"></div>
+                  <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+                    {unit.tags.map(tag => (
+                      <span key={tag} className="bg-black/60 backdrop-blur-md text-white text-[8px] font-black uppercase tracking-widest px-3 py-1 rounded-full border border-white/10">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="p-8 flex-1 flex flex-col">
+                  <h3 className="text-2xl font-black mb-3 group-hover:text-brand-green transition-colors">{unit.name}</h3>
+                  <div className="flex items-start gap-2 text-slate-500 mb-8">
+                    <MapPin size={16} className="shrink-0 mt-1 text-brand-blue" />
+                    <p className="text-xs font-medium leading-relaxed">{unit.address}</p>
+                  </div>
+                  <div className="mt-auto">
+                    <Link to={`/unidade/${unit.id}`} className="w-full py-4 bg-white/5 text-white font-black rounded-xl hover:bg-brand-green hover:text-white transition-all duration-300 flex items-center justify-center gap-2 uppercase tracking-widest text-[10px] border border-white/10">
+                      VER DETALHES <ArrowRight size={16} />
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* SEÇÃO SERVIÇOS */}
-      <section id="servicos" className="py-20 md:py-32 bg-darkCard/20">
+      <section id="servicos" className="py-24">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16 md:mb-20">
-            <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-4 tracking-tighter">
-              NOSSOS <span className="text-brand-blue">SERVIÇOS</span>
+          <div className="text-center mb-20">
+            <h2 className="text-4xl sm:text-6xl font-black mb-4 tracking-tighter">
+              TUDO QUE <span className="text-brand-blue">VOCÊ PRECISA</span>
             </h2>
-            <p className="text-slate-500 uppercase tracking-[0.2em] text-[10px] sm:text-xs">Infraestrutura completa para sua transformação física</p>
+            <p className="text-slate-500 uppercase tracking-[0.2em] text-xs font-bold">Infraestrutura completa de alto padrão</p>
           </div>
 
-          <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 md:gap-8 pb-10 px-4 -mx-4 no-scrollbar">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {services.map((service, index) => (
               <motion.div 
                 key={index}
-                initial={{ opacity: 0, scale: 0.95 }}
+                initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="min-w-[280px] sm:min-w-[350px] snap-center bg-darkCard/60 p-8 sm:p-10 rounded-3xl border border-white/5 text-center hover:bg-darkCard transition-colors group"
+                transition={{ delay: index * 0.05 }}
+                className="bg-darkCard/40 p-8 rounded-3xl border border-white/5 text-center hover:bg-darkCard transition-all group"
               >
                 <div className="mb-6 flex justify-center group-hover:scale-110 transition-transform duration-300">
-                  {service.icon}
+                  <div className="w-16 h-16 rounded-2xl bg-brand-green/10 flex items-center justify-center group-hover:bg-brand-green group-hover:text-white transition-all">
+                    {service.icon}
+                  </div>
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold mb-4 tracking-tight">{service.title}</h3>
-                <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">{service.desc}</p>
+                <h3 className="text-sm font-black mb-2 tracking-tight uppercase">{service.title}</h3>
+                <p className="text-slate-500 text-[10px] font-medium leading-relaxed">{service.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CARROSSEL DE MODALIDADES */}
+      <section className="py-24 bg-darkBg overflow-hidden">
+        <div className="container mx-auto px-6 mb-12">
+          <div className="text-center">
+            <h2 className="text-3xl sm:text-5xl font-black mb-4 tracking-tighter uppercase">
+              NOSSAS <span className="text-brand-green">MODALIDADES</span>
+            </h2>
+            <p className="text-slate-500 uppercase tracking-[0.2em] text-xs font-bold">Conheça nossas atividades</p>
+          </div>
+        </div>
+
+        <div className="relative group">
+          <div 
+            ref={scrollRef}
+            className="flex overflow-x-auto gap-6 px-6 pb-8 no-scrollbar snap-x snap-mandatory"
+            onMouseLeave={() => setActiveModality(null)}
+          >
+            {[
+              { name: 'Pilates', img: '/public/servicos/pilates-acedemia.jpg' },
+              { name: 'Natação', img: '/public/servicos/natacao-academia.png' },
+              { name: 'Ginástica', img: '/public/servicos/ginastica-academia.jpg' },
+              { name: 'Spinning', img: '/public/servicos/aula-spinning.jpg' },
+              { name: 'Jump', img: '/public/servicos/aula-jump-academia.jpg' },
+              { name: 'Step', img: '/public/servicos/aula-step-academia.jpg' },
+              { name: 'Ritmos', img: '/public/servicos/aula-ritmo-academia.jpg' },
+              { name: 'Pump', img: '/public/servicos/aula-pump-academia.jpg' },
+              { name: 'Alongamento', img: '/public/servicos/aula-alongamento-academia.jpg' },
+              { name: 'Cross Funcional', img: '/public/servicos/cross-funcional.jpg' },
+              { name: 'Ballet', img: '/public/servicos/ballet-academia.png' },
+              { name: 'Abdomem', img: '/public/servicos/local-abdomem-academia.jpg' },
+            ].map((modality, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                onMouseEnter={() => setActiveModality(index)}
+                onClick={() => setActiveModality(index === activeModality ? null : index)}
+                className={`min-w-[300px] md:min-w-[450px] aspect-[4/5] relative rounded-[2rem] overflow-hidden snap-center group/item transition-all duration-500 cursor-pointer ${
+                  activeModality !== null && activeModality !== index 
+                    ? "opacity-20 blur-[4px] scale-90 grayscale" 
+                    : "opacity-100 scale-100 grayscale-0"
+                }`}
+              >
+                <img 
+                  src={modality.img} 
+                  alt={modality.name}
+                  className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ${
+                    activeModality === index ? "scale-110" : "scale-100"
+                  }`}
+                  referrerPolicy="no-referrer"
+                />
+                <div className={`absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent transition-opacity duration-500 ${
+                  activeModality !== null && activeModality !== index ? "opacity-0" : "opacity-100"
+                }`} />
+                <div className="absolute bottom-0 left-0 p-8 w-full">
+                  <h3 className={`text-2xl md:text-3xl font-black text-white uppercase tracking-tighter mb-2 transition-transform duration-500 ${
+                    activeModality === index ? "translate-y-0" : "translate-y-2"
+                  }`}>
+                    {modality.name}
+                  </h3>
+                  <div className={`h-1 bg-brand-green rounded-full transition-all duration-500 ${
+                    activeModality === index ? "w-24" : "w-12"
+                  }`} />
+                </div>
               </motion.div>
             ))}
           </div>
           
-          <div className="flex justify-center gap-2 mt-4 text-brand-green/30">
-            <div className="w-12 h-1 bg-brand-green rounded-full"></div>
-            <div className="w-4 h-1 bg-current rounded-full"></div>
-            <div className="w-4 h-1 bg-current rounded-full"></div>
+          {/* Scroll Progress Bar */}
+          <div className="max-w-xs mx-auto px-6 mt-8">
+            <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden">
+              <motion.div 
+                className="h-full bg-brand-blue"
+                style={{ scaleX: scrollXProgress, transformOrigin: "left" }}
+              />
+            </div>
+            <p className="text-[10px] text-center mt-2 text-slate-500 font-bold uppercase tracking-[0.2em]">Deslize para explorar</p>
           </div>
         </div>
       </section>
 
-      {/* SEÇÃO TEMPO DE AULA */}
-      <section id="duracao" className="py-20 md:py-32 bg-dark-bg">
+      {/* HORÁRIOS */}
+      <section className="py-16 bg-brand-green/5 border-y border-brand-green/10">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16 md:mb-20">
-            <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-4 tracking-tighter">
-              DURAÇÃO DAS <span className="text-brand-green">AULAS</span>
-            </h2>
-            <p className="text-slate-500 uppercase tracking-[0.2em] text-[10px] sm:text-xs">Planeje seu tempo com a gente</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {[
-              { 
-                title: 'Pilates', 
-                duration: '1 hora', 
-                img: 'https://images.unsplash.com/photo-1518611012118-29617b0ccdfe?auto=format&fit=crop&w=600&q=80',
-                desc: 'Foco em controle, precisão e respiração.'
-              },
-              { 
-                title: 'Ginástica', 
-                duration: '40 min', 
-                img: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=600&q=80',
-                desc: 'Energia alta e queima calórica intensa.'
-              },
-              { 
-                title: 'Natação', 
-                duration: '50 min - 1 hora', 
-                img: 'https://images.unsplash.com/photo-1530549387074-d562cb0e50e9?auto=format&fit=crop&w=600&q=80',
-                desc: 'Treino completo de baixo impacto.'
-              }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                className="relative group rounded-3xl overflow-hidden aspect-[4/5]"
-              >
-                <img src={item.img} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt={item.title} />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-                <div className="absolute bottom-0 left-0 p-8 w-full">
-                  <h3 className="text-3xl font-black mb-2 text-white">{item.title}</h3>
-                  <div className="flex items-center gap-2 text-brand-green mb-4">
-                    <CheckCircle2 size={18} />
-                    <span className="font-mono font-bold text-xl">{item.duration}</span>
-                  </div>
-                  <p className="text-slate-300 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {item.desc}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SEÇÃO CONTATO */}
-      <section id="contato" className="py-20 md:py-32 container mx-auto px-6">
-        <div className="text-center mb-16 md:mb-20">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 tracking-tighter">
-            ENTRE EM <span className="text-brand-green">CONTATO</span>
-          </h2>
-          <p className="text-slate-500 uppercase tracking-[0.2em] text-[10px] sm:text-xs">Estamos sempre prontos para ajudar você!</p>
-        </div>
-
-        <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-          <div className="text-center group">
-            <a href="tel:1636283440" className="block">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-brand-green/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-brand-green group-hover:text-white transition-all duration-300">
-                <Phone size={28} className="text-brand-green group-hover:text-white" />
+          <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+            <div className="text-center md:text-left">
+              <h2 className="text-2xl sm:text-3xl font-black tracking-tighter uppercase">
+                HORÁRIOS DE <span className="text-brand-green">FUNCIONAMENTO</span>
+              </h2>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-8">
+              <div className="flex items-center gap-3">
+                <Clock className="text-brand-green" size={20} />
+                <p className="text-xs font-bold"><span className="text-slate-500 uppercase tracking-widest mr-2">SEG-SEX:</span> 05:30 ÀS 23:30</p>
               </div>
-            </a>
-            <h3 className="text-lg sm:text-xl font-bold mb-2">Telefone</h3>
-            <a href="tel:1636283440" className="text-brand-blue hover:text-brand-green transition-colors font-mono text-sm sm:text-base">(16) 3628-3440</a>
-          </div>
-
-          <div className="text-center group">
-            <a href="mailto:atendimento@academiaatenas.com.br" className="block">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-brand-green/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-brand-green group-hover:text-white transition-all duration-300">
-                <Mail size={28} className="text-brand-green group-hover:text-white" />
+              <div className="flex items-center gap-3">
+                <Clock className="text-brand-blue" size={20} />
+                <p className="text-xs font-bold"><span className="text-slate-500 uppercase tracking-widest mr-2">SÁB-FER:</span> 08:00 ÀS 14:00</p>
               </div>
-            </a>
-            <h3 className="text-lg sm:text-xl font-bold mb-2">Email</h3>
-            <a href="mailto:atendimento@academiaatenas.com.br" className="text-brand-blue hover:text-brand-green transition-colors font-mono text-[10px] sm:text-xs break-all">atendimento@academiaatenas.com.br</a>
-          </div>
-
-          <div className="text-center group">
-            <a href="https://instagram.com/atenasacademia" target="_blank" rel="noopener noreferrer" className="block">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-brand-green/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-brand-green group-hover:text-white transition-all duration-300">
-                <Instagram size={28} className="text-brand-green group-hover:text-white" />
-              </div>
-            </a>
-            <h3 className="text-lg sm:text-xl font-bold mb-2">Instagram</h3>
-            <a href="https://instagram.com/atenasacademia" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:text-brand-green transition-colors font-mono text-sm sm:text-base">@atenasacademia</a>
-          </div>
-
-          <div className="text-center group">
-            <a href="https://facebook.com/atenasacademia.oficial" target="_blank" rel="noopener noreferrer" className="block">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-brand-green/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-brand-green group-hover:text-white transition-all duration-300">
-                <Facebook size={28} className="text-brand-green group-hover:text-white" />
-              </div>
-            </a>
-            <h3 className="text-lg sm:text-xl font-bold mb-2">Facebook</h3>
-            <a href="https://facebook.com/atenasacademia.oficial" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:text-brand-green transition-colors font-mono text-[10px] sm:text-xs break-all">@atenasacademia.oficial</a>
+            </div>
           </div>
         </div>
       </section>

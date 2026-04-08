@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { MapPin, Clock, CheckCircle2, Phone, MessageCircle, ArrowLeft, ChevronLeft, ChevronRight, QrCode, CreditCard, Banknote } from 'lucide-react';
 
 const unitData: Record<string, any> = {
@@ -26,7 +26,8 @@ const unitData: Record<string, any> = {
       { name: 'Plano Mensal', price: 'R$ 165,00', features: ['Musculação e Ginástica', 'Treine na unidade cadastrada'] },
       { name: 'Plano Recorrente', price: 'R$ 129,00', features: ['Musculação e Ginástica', 'Acesso a todas as unidades da rede'] },
     ],
-    contact: '(16) 3628-3440',
+    whatsapp: '(16) 3628-3440',
+    phone: '(16) 3628-3440',
   },
   caramuru: {
     name: 'Unidade Caramuru',
@@ -48,7 +49,8 @@ const unitData: Record<string, any> = {
       { name: 'Plano Mensal', price: 'R$ 165,00', features: ['Musculação e Ginástica', 'Treine na unidade cadastrada'] },
       { name: 'Plano Recorrente', price: 'R$ 129,00', features: ['Musculação e Ginástica', 'Acesso a todas as unidades da rede'] },
     ],
-    contact: '(16) 3628-3440',
+    whatsapp: '(16) 3441-1233',
+    phone: '(16) 3441-1233',
   },
   'novo-mundo': {
     name: 'Unidade Novo Mundo',
@@ -71,7 +73,8 @@ const unitData: Record<string, any> = {
       { name: 'Plano Mensal', price: 'R$ 165,00', features: ['Musculação e Ginástica', 'Treine na unidade cadastrada'] },
       { name: 'Plano Recorrente', price: 'R$ 129,00', features: ['Musculação e Ginástica', 'Acesso a todas as unidades da rede'] },
     ],
-    contact: '(16) 3628-3440',
+    whatsapp: '(16) 3618-4070',
+    phone: '(16) 3618-4070',
   },
   'vila-tiberio': {
     name: 'Unidade Vila Tibério',
@@ -94,7 +97,8 @@ const unitData: Record<string, any> = {
       { name: 'Plano Mensal', price: 'R$ 165,00', features: ['Musculação e Ginástica', 'Treine na unidade cadastrada'] },
       { name: 'Plano Recorrente', price: 'R$ 129,00', features: ['Musculação e Ginástica', 'Acesso a todas as unidades da rede'] },
     ],
-    contact: '(16) 3628-3440',
+    whatsapp: '(16) 99139-2034',
+    phone: '(16) 3421-9815',
   },
   'campos-eliseos': {
     name: 'Unidade Campos Elíseos',
@@ -117,7 +121,8 @@ const unitData: Record<string, any> = {
       { name: 'Plano Mensal', price: 'R$ 165,00', features: ['Musculação e Ginástica', 'Treine na unidade cadastrada'] },
       { name: 'Plano Recorrente', price: 'R$ 129,00', features: ['Musculação e Ginástica', 'Acesso a todas as unidades da rede'] },
     ],
-    contact: '(16) 3628-3440',
+    whatsapp: '(16) 3442-0368',
+    phone: '(16) 3442-0368',
   },
 };
 
@@ -148,34 +153,38 @@ export default function UnitDetail() {
   return (
     <div className="min-h-screen bg-darkBg text-white pb-20">
       {/* HERO SECTION */}
-      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden mb-8">
+      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden mb-12">
         <div className="absolute inset-0 z-0">
           <img 
             src={unit.photos[currentPhoto]} 
-            className="w-full h-full object-cover opacity-30 blur-md transition-all duration-1000"
+            className="w-full h-full object-cover opacity-30 transition-all duration-1000"
             alt={unit.name}
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-darkBg/80 via-darkBg/50 to-darkBg"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-darkBg via-darkBg/60 to-darkBg"></div>
         </div>
 
         <div className="relative z-10 container mx-auto px-6">
-          <Link to="/" className="inline-flex items-center gap-2 text-brand-green hover:gap-3 transition-all mb-8 font-bold uppercase tracking-widest text-xs">
-            <ArrowLeft size={16} /> VOLTAR PARA A HOME
+          <Link to="/" className="inline-flex items-center gap-2 text-brand-green hover:gap-3 transition-all mb-10 font-black uppercase tracking-[0.2em] text-[10px]">
+            <ArrowLeft size={14} /> VOLTAR PARA A HOME
           </Link>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 tracking-tighter">
+            <div className="flex items-center gap-2 mb-6">
+              <span className="w-12 h-[2px] bg-brand-green"></span>
+              <span className="text-brand-green font-black uppercase tracking-[0.3em] text-xs">Unidade de Excelência</span>
+            </div>
+            <h1 className="text-5xl sm:text-7xl md:text-8xl font-black mb-6 tracking-tighter uppercase">
               <span className="text-brand-blue">UNIDADE </span>
-              <span className="text-brand-green">{unit.name.replace('Unidade ', '')}</span>
+              <span className="text-brand-green italic">{unit.name.replace('Unidade ', '')}</span>
             </h1>
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-              <div className="flex items-center gap-2 text-slate-300">
-                <MapPin size={18} className="text-brand-green shrink-0" />
-                <span className="text-xs sm:text-sm uppercase tracking-widest">{unit.address}</span>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-6">
+              <div className="flex items-center gap-3 text-slate-300">
+                <MapPin size={20} className="text-brand-green shrink-0" />
+                <span className="text-sm sm:text-base uppercase tracking-widest font-medium">{unit.address}</span>
               </div>
             </div>
           </motion.div>
@@ -183,43 +192,45 @@ export default function UnitDetail() {
       </section>
 
       {/* DYNAMIC CAROUSEL SECTION */}
-      <section className="container mx-auto px-6 mb-16">
-        <div className="max-w-5xl mx-auto">
-          <div className="relative aspect-[16/9] sm:aspect-[21/9] rounded-[2rem] sm:rounded-[3rem] overflow-hidden group shadow-2xl shadow-brand-blue/10 border border-white/5">
-            <motion.div 
-              key={currentPhoto}
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -100 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              className="w-full h-full"
-            >
-              <img 
-                src={unit.photos[currentPhoto]} 
-                alt={unit.name}
-                className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
-              />
-            </motion.div>
+      <section className="container mx-auto px-4 sm:px-6 mb-24">
+        <div className="max-w-6xl mx-auto">
+          <div className="relative aspect-[16/9] sm:aspect-[21/9] rounded-[2.5rem] sm:rounded-[3.5rem] overflow-hidden group shadow-2xl shadow-brand-blue/10 border border-white/5">
+            <AnimatePresence mode="wait">
+              <motion.div 
+                key={currentPhoto}
+                initial={{ opacity: 0, scale: 1.1 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.8 }}
+                className="w-full h-full"
+              >
+                <img 
+                  src={unit.photos[currentPhoto]} 
+                  alt={unit.name}
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              </motion.div>
+            </AnimatePresence>
             
             {/* Navigation Arrows */}
             {unit.photos.length > 1 && (
               <>
                 <button 
                   onClick={prevPhoto}
-                  className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-14 sm:h-14 bg-black/40 backdrop-blur-xl rounded-full flex items-center justify-center hover:bg-brand-green hover:text-white transition-all border border-white/10 z-20"
+                  className="absolute left-6 sm:left-10 top-1/2 -translate-y-1/2 w-12 h-12 sm:w-16 sm:h-16 bg-black/40 backdrop-blur-xl rounded-full flex items-center justify-center hover:bg-brand-green hover:text-white transition-all border border-white/10 z-20"
                 >
-                  <ChevronLeft size={24} />
+                  <ChevronLeft size={28} />
                 </button>
                 <button 
                   onClick={nextPhoto}
-                  className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-14 sm:h-14 bg-black/40 backdrop-blur-xl rounded-full flex items-center justify-center hover:bg-brand-green hover:text-white transition-all border border-white/10 z-20"
+                  className="absolute right-6 sm:right-10 top-1/2 -translate-y-1/2 w-12 h-12 sm:w-16 sm:h-16 bg-black/40 backdrop-blur-xl rounded-full flex items-center justify-center hover:bg-brand-green hover:text-white transition-all border border-white/10 z-20"
                 >
-                  <ChevronRight size={24} />
+                  <ChevronRight size={28} />
                 </button>
                 
                 {/* Photo Counter */}
-                <div className="absolute top-4 right-4 sm:top-8 sm:right-8 bg-black/40 backdrop-blur-xl px-4 py-2 rounded-full border border-white/10 font-mono text-[10px] sm:text-xs z-20">
+                <div className="absolute top-6 right-6 sm:top-10 sm:right-10 bg-black/40 backdrop-blur-xl px-6 py-3 rounded-full border border-white/10 font-black text-[10px] sm:text-xs z-20 uppercase tracking-widest">
                   <span className="text-brand-green">{currentPhoto + 1}</span> / {unit.photos.length}
                 </div>
               </>
@@ -227,12 +238,12 @@ export default function UnitDetail() {
           </div>
 
           {/* Thumbnails / Indicators */}
-          <div className="flex justify-center gap-3 mt-6">
+          <div className="flex justify-center gap-3 sm:gap-4 mt-8 overflow-x-auto no-scrollbar py-4">
             {unit.photos.map((photo: string, idx: number) => (
               <button
                 key={idx}
                 onClick={() => setCurrentPhoto(idx)}
-                className={`relative w-16 h-10 sm:w-24 sm:h-14 rounded-xl overflow-hidden border-2 transition-all ${idx === currentPhoto ? 'border-brand-green scale-110 shadow-lg shadow-brand-green/20' : 'border-transparent opacity-40 hover:opacity-100'}`}
+                className={`relative w-16 h-10 sm:w-32 sm:h-20 rounded-xl sm:rounded-2xl overflow-hidden border-2 shrink-0 transition-all ${idx === currentPhoto ? 'border-brand-green scale-110 shadow-xl shadow-brand-green/20' : 'border-transparent opacity-40 hover:opacity-100'}`}
               >
                 <img src={photo} className="w-full h-full object-cover" alt={`Thumbnail ${idx}`} referrerPolicy="no-referrer" />
               </button>
@@ -398,18 +409,18 @@ export default function UnitDetail() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <a 
-              href={`https://wa.me/${unit.contact.replace(/\D/g, '')}`}
+              href={`https://wa.me/55${unit.whatsapp.replace(/\D/g, '')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-3 py-5 bg-[#25D366] text-white font-bold rounded-2xl hover:scale-[1.02] active:scale-95 transition-all text-sm"
             >
-              <MessageCircle size={24} /> WHATSAPP: {unit.contact}
+              <MessageCircle size={24} /> WHATSAPP: {unit.whatsapp}
             </a>
             <a 
-              href={`tel:${unit.contact.replace(/\D/g, '')}`}
+              href={`tel:${unit.phone.replace(/\D/g, '')}`}
               className="flex items-center justify-center gap-3 py-5 bg-white/5 text-white font-bold rounded-2xl border border-white/10 hover:border-brand-green/50 transition-all text-sm"
             >
-              <Phone size={24} className="text-brand-green" /> {unit.contact}
+              <Phone size={24} className="text-brand-green" /> TELEFONE: {unit.phone}
             </a>
           </div>
         </motion.div>
