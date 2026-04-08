@@ -72,13 +72,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       
       {/* HEADER */}
       <header className="fixed w-full z-50 bg-darkBg/95 backdrop-blur-xl border-b border-white/5">
-        <div className="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+        <div className="container mx-auto px-4 sm:px-8 py-4 flex justify-between items-center">
           <Link 
             to="/" 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="shrink-0"
           >
-            <Logo className="h-8 sm:h-10 w-auto" />
+            <Logo className="h-8 sm:h-10 md:h-12 w-auto" />
           </Link>
           
           <div className="hidden lg:flex items-center gap-8">
@@ -162,27 +162,65 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div 
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
-              className="lg:hidden bg-darkBg border-b border-white/10 overflow-hidden"
+              initial={{ opacity: 0, x: '100%' }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="fixed inset-0 z-40 lg:hidden bg-darkBg flex flex-col pt-24"
             >
-              <div className="px-6 py-6 flex flex-col gap-6">
-                {[...mainLinks, ...extraLinks].map((link) => (
-                  <button 
+              <div className="px-8 py-8 flex flex-col gap-8 overflow-y-auto">
+                {[...mainLinks, ...extraLinks].map((link, idx) => (
+                  <motion.button 
                     key={link.name}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: idx * 0.05 }}
                     onClick={() => handleNavClick(link)}
-                    className="text-sm uppercase tracking-[0.2em] hover:text-brand-green text-left font-bold"
+                    className="text-3xl sm:text-4xl uppercase tracking-tighter hover:text-brand-green text-left font-black"
                   >
                     {link.name}
-                  </button>
+                  </motion.button>
                 ))}
-                <div className="pt-4 border-t border-white/5">
-                  <a href={`tel:${GENERAL_PHONE.replace(/\D/g, '')}`} className="text-xs uppercase tracking-widest text-slate-400 hover:text-brand-green transition-colors flex items-center gap-2">
-                    <Phone size={14} /> {GENERAL_PHONE}
+                
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.4 }}
+                  className="mt-8 pt-8 border-t border-white/10 flex flex-col gap-6"
+                >
+                  <a href={`tel:${GENERAL_PHONE.replace(/\D/g, '')}`} className="text-lg uppercase tracking-widest text-slate-300 hover:text-brand-green transition-colors flex items-center gap-3 font-bold">
+                    <Phone size={20} className="text-brand-green" /> {GENERAL_PHONE}
                   </a>
-                </div>
+                  
+                  <div className="flex gap-6">
+                    <a href="https://instagram.com/atenasacademia" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 hover:text-brand-green transition-colors">
+                      <Instagram size={24} />
+                    </a>
+                    <a href="https://facebook.com/atenasacademia.oficial" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 hover:text-brand-green transition-colors">
+                      <Facebook size={24} />
+                    </a>
+                    <a href={`https://wa.me/55${GENERAL_PHONE.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 hover:text-brand-green transition-colors">
+                      <MessageCircle size={24} />
+                    </a>
+                  </div>
+                </motion.div>
+                
+                <motion.button 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    if (location.pathname.startsWith('/unidade/')) {
+                      navigate('/');
+                    } else {
+                      handleNavClick({ path: '/#unidades', isAnchor: true });
+                    }
+                  }}
+                  className="mt-4 bg-brand-green text-white py-6 rounded-2xl font-black text-sm hover:bg-brand-green/90 transition-all uppercase tracking-[0.2em] shadow-xl shadow-brand-green/20"
+                >
+                  {location.pathname.startsWith('/unidade/') ? 'VOLTAR' : 'MATRICULE-SE AGORA'}
+                </motion.button>
               </div>
             </motion.div>
           )}

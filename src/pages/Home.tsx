@@ -125,21 +125,21 @@ export default function Home() {
               <span className="text-brand-green font-black uppercase tracking-[0.3em] text-xs sm:text-sm">Seja sua melhor versão</span>
             </div>
             
-            <h1 className="text-5xl sm:text-7xl md:text-8xl font-black mb-8 leading-[0.9] tracking-tighter uppercase">
+            <h1 className="text-4xl sm:text-7xl md:text-8xl font-black mb-6 sm:mb-8 leading-[0.9] tracking-tighter uppercase">
               ACADEMIA <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-light-blue">
                 ATENAS
               </span>
             </h1>
 
-            <div className="min-h-[3rem] mb-10">
+            <div className="min-h-[3rem] mb-8 sm:mb-10">
               <AnimatePresence mode="wait">
                 <motion.p
                   key={currentPhraseIndex}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="text-lg sm:text-xl text-slate-300 font-medium max-w-xl"
+                  className="text-base sm:text-xl text-slate-300 font-medium max-w-xl"
                 >
                   {phrases[currentPhraseIndex]}
                 </motion.p>
@@ -149,13 +149,13 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4">
               <button 
                 onClick={scrollToPlans}
-                className="bg-brand-green text-white px-10 py-5 rounded-full font-black hover:bg-brand-green/90 transition-all uppercase tracking-widest text-xs flex items-center justify-center gap-3 shadow-xl shadow-brand-green/20"
+                className="bg-brand-green text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full font-black hover:bg-brand-green/90 transition-all uppercase tracking-widest text-[10px] sm:text-xs flex items-center justify-center gap-3 shadow-xl shadow-brand-green/20"
               >
                 ESCOLHER MEU PLANO <Zap size={18} />
               </button>
               <button 
                 onClick={scrollToUnits}
-                className="glass text-white px-10 py-5 rounded-full font-black hover:bg-white/10 transition-all uppercase tracking-widest text-xs flex items-center justify-center gap-3"
+                className="glass text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full font-black hover:bg-white/10 transition-all uppercase tracking-widest text-[10px] sm:text-xs flex items-center justify-center gap-3"
               >
                 VER UNIDADES <MapPin size={18} />
               </button>
@@ -165,24 +165,24 @@ export default function Home() {
       </section>
 
       {/* QUICK STATS */}
-      <section className="py-12 border-y border-white/5 bg-darkCard/30">
+      <section className="py-8 sm:py-12 border-y border-white/5 bg-darkCard/30">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             <div className="text-center">
-              <p className="text-3xl sm:text-4xl font-black text-brand-blue mb-1">05</p>
-              <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Unidades</p>
+              <p className="text-2xl sm:text-4xl font-black text-brand-blue mb-1">05</p>
+              <p className="text-[9px] sm:text-[10px] uppercase tracking-widest text-slate-500 font-bold">Unidades</p>
             </div>
             <div className="text-center">
-              <p className="text-3xl sm:text-4xl font-black text-brand-green mb-1">+10</p>
-              <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Modalidades</p>
+              <p className="text-2xl sm:text-4xl font-black text-brand-green mb-1">+10</p>
+              <p className="text-[9px] sm:text-[10px] uppercase tracking-widest text-slate-500 font-bold">Modalidades</p>
             </div>
             <div className="text-center">
-              <p className="text-3xl sm:text-4xl font-black text-brand-blue mb-1">100%</p>
-              <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Equipada</p>
+              <p className="text-2xl sm:text-4xl font-black text-brand-blue mb-1">100%</p>
+              <p className="text-[9px] sm:text-[10px] uppercase tracking-widest text-slate-500 font-bold">Equipada</p>
             </div>
             <div className="text-center">
-              <p className="text-3xl sm:text-4xl font-black text-brand-green mb-1">20+</p>
-              <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Profissionais</p>
+              <p className="text-2xl sm:text-4xl font-black text-brand-green mb-1">20+</p>
+              <p className="text-[9px] sm:text-[10px] uppercase tracking-widest text-slate-500 font-bold">Profissionais</p>
             </div>
           </div>
         </div>
@@ -438,7 +438,7 @@ export default function Home() {
                 transition={{ delay: index * 0.1 }}
                 onMouseEnter={() => setActiveModality(index)}
                 onClick={() => setActiveModality(index === activeModality ? null : index)}
-                className={`min-w-[300px] md:min-w-[450px] aspect-[4/5] relative rounded-[2rem] overflow-hidden snap-center group/item transition-all duration-500 cursor-pointer ${
+                className={`min-w-[260px] sm:min-w-[300px] md:min-w-[450px] aspect-[4/5] relative rounded-[2rem] overflow-hidden snap-center group/item transition-all duration-500 cursor-pointer ${
                   activeModality !== null && activeModality !== index 
                     ? "opacity-20 blur-[4px] scale-90 grayscale" 
                     : "opacity-100 scale-100 grayscale-0"

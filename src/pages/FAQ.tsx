@@ -108,14 +108,14 @@ export default function FAQPage() {
 
         {/* Search & Filters */}
         <div className="max-w-4xl mx-auto mb-12">
-          <div className="relative mb-8">
+          <div className="relative mb-8 sm:mb-10">
             <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-500" size={20} />
             <input 
               type="text"
               placeholder="O que você está procurando?"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-darkCard border border-white/10 rounded-2xl py-5 pl-16 pr-6 text-white focus:outline-none focus:border-brand-green transition-all"
+              className="w-full bg-darkCard border border-white/10 rounded-2xl py-5 sm:py-6 pl-16 pr-6 text-white focus:outline-none focus:border-brand-green transition-all text-sm sm:text-base"
             />
           </div>
 
@@ -124,7 +124,7 @@ export default function FAQPage() {
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all border shrink-0 sm:shrink ${
+                className={`flex items-center gap-2 px-5 sm:px-8 py-3 sm:py-4 rounded-xl text-[10px] sm:text-xs font-black uppercase tracking-widest transition-all border shrink-0 sm:shrink ${
                   activeCategory === cat.id 
                     ? 'bg-brand-green border-brand-green text-white shadow-lg shadow-brand-green/20' 
                     : 'bg-darkCard border-white/5 text-slate-400 hover:border-white/20'

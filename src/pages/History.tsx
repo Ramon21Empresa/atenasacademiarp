@@ -79,16 +79,16 @@ export default function History() {
       </section>
 
       {/* FOUNDER & MANAGEMENT SECTION */}
-      <section className="py-24">
+      <section className="py-16 sm:py-24">
         <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-16 items-center mb-24">
+          <div className="grid md:grid-cols-2 gap-12 sm:gap-16 items-center mb-20 sm:mb-24">
             <motion.div 
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="relative"
+              className="relative order-2 md:order-1"
             >
-              <div className="aspect-square max-w-md mx-auto rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl">
+              <div className="aspect-square max-w-md mx-auto rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl">
                 <img 
                   src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80" 
                   alt="Gestão Academia Atenas" 
@@ -96,8 +96,8 @@ export default function History() {
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <div className="absolute -bottom-6 -right-6 bg-brand-green p-10 rounded-3xl hidden lg:block shadow-xl shadow-brand-green/20">
-                <p className="text-white font-black text-5xl italic leading-none">35+</p>
+              <div className="absolute -bottom-6 -right-6 bg-brand-green p-8 sm:p-10 rounded-3xl hidden lg:block shadow-xl shadow-brand-green/20">
+                <p className="text-white font-black text-4xl sm:text-5xl italic leading-none">35+</p>
                 <p className="text-white/80 text-[10px] uppercase tracking-[0.2em] font-black mt-2">Anos de Tradição</p>
               </div>
             </motion.div>
@@ -106,33 +106,34 @@ export default function History() {
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              className="order-1 md:order-2"
             >
-              <h2 className="text-4xl sm:text-5xl font-black mb-8 tracking-tighter">NOSSA <span className="text-brand-light-blue">GESTÃO</span></h2>
-              <p className="text-slate-400 mb-8 leading-relaxed italic text-base">
+              <h2 className="text-3xl sm:text-5xl font-black mb-6 sm:mb-8 tracking-tighter">NOSSA <span className="text-brand-light-blue">GESTÃO</span></h2>
+              <p className="text-slate-400 mb-6 sm:mb-8 leading-relaxed italic text-sm sm:text-base">
                 A Academia Atenas é gerida por uma administração centralizada que preza pela padronização e excelência em todas as suas unidades.
               </p>
               
-              <p className="text-slate-400 mb-10 text-base leading-relaxed">
+              <p className="text-slate-400 mb-8 sm:mb-10 text-sm sm:text-base leading-relaxed">
                 Nossa estrutura organizacional é focada em manter o modelo de academia "de bairro" com infraestrutura de grandes redes, garantindo que cada aluno receba atenção personalizada e suporte técnico de qualidade.
               </p>
 
-              <div className="grid grid-cols-2 gap-8">
-                <div className="flex items-start gap-4">
-                  <div className="bg-brand-blue/10 p-3 rounded-xl">
-                    <Users className="text-brand-blue" size={24} />
+              <div className="grid grid-cols-2 gap-6 sm:gap-8">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="bg-brand-blue/10 p-2 sm:p-3 rounded-xl">
+                    <Users className="text-brand-blue" size={20} />
                   </div>
                   <div>
-                    <p className="font-black text-white uppercase tracking-wider text-xs">Comunidade</p>
-                    <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">Vidas transformadas</p>
+                    <p className="font-black text-white uppercase tracking-wider text-[10px] sm:text-xs">Comunidade</p>
+                    <p className="text-[9px] sm:text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">Vidas transformadas</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-4">
-                  <div className="bg-brand-green/10 p-3 rounded-xl">
-                    <Heart className="text-brand-green" size={24} />
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="bg-brand-green/10 p-2 sm:p-3 rounded-xl">
+                    <Heart className="text-brand-green" size={20} />
                   </div>
                   <div>
-                    <p className="font-black text-white uppercase tracking-wider text-xs">Paixão</p>
-                    <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">Amor pelo movimento</p>
+                    <p className="font-black text-white uppercase tracking-wider text-[10px] sm:text-xs">Paixão</p>
+                    <p className="text-[9px] sm:text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">Amor pelo movimento</p>
                   </div>
                 </div>
               </div>
@@ -144,40 +145,40 @@ export default function History() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-darkCard p-10 md:p-16 rounded-[3rem] border border-white/5"
+            className="bg-darkCard p-8 sm:p-16 rounded-[2rem] sm:rounded-[3rem] border border-white/5"
           >
-            <div className="text-center mb-16">
-              <h2 className="text-4xl sm:text-5xl font-black mb-6 tracking-tighter">EQUIPE <span className="text-brand-green">TÉCNICA</span></h2>
-              <p className="text-slate-400 text-base max-w-2xl mx-auto font-medium">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-3xl sm:text-5xl font-black mb-4 sm:mb-6 tracking-tighter">EQUIPE <span className="text-brand-green">TÉCNICA</span></h2>
+              <p className="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto font-medium">
                 A rede Atenas é conhecida por manter um quadro de colaboradores que se tornam figuras conhecidas nos bairros onde atuam.
               </p>
             </div>
             
-            <div className="grid md:grid-cols-3 gap-12">
-              <div className="space-y-6 group">
-                <div className="w-16 h-16 bg-brand-blue/10 rounded-2xl flex items-center justify-center group-hover:bg-brand-blue group-hover:text-black transition-all">
-                  <Trophy size={32} />
+            <div className="grid md:grid-cols-3 gap-8 sm:gap-12">
+              <div className="space-y-4 sm:space-y-6 group">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-brand-blue/10 rounded-2xl flex items-center justify-center group-hover:bg-brand-blue group-hover:text-black transition-all">
+                  <Trophy size={24} className="sm:w-8 sm:h-8" />
                 </div>
-                <h4 className="text-white font-black uppercase tracking-tight text-xl">Coordenadores</h4>
-                <p className="text-slate-500 text-sm leading-relaxed font-medium">
+                <h4 className="text-white font-black uppercase tracking-tight text-lg sm:text-xl">Coordenadores</h4>
+                <p className="text-slate-500 text-xs sm:text-sm leading-relaxed font-medium">
                   Profissionais de Educação Física com longa trajetória na rede, responsáveis por montar os cronogramas de aulas coletivas e supervisionar os instrutores.
                 </p>
               </div>
-              <div className="space-y-6 group">
-                <div className="w-16 h-16 bg-brand-green/10 rounded-2xl flex items-center justify-center group-hover:bg-brand-green group-hover:text-white transition-all">
-                  <Target size={32} />
+              <div className="space-y-4 sm:space-y-6 group">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-brand-green/10 rounded-2xl flex items-center justify-center group-hover:bg-brand-green group-hover:text-white transition-all">
+                  <Target size={24} className="sm:w-8 sm:h-8" />
                 </div>
-                <h4 className="text-white font-black uppercase tracking-tight text-xl">Instrutores</h4>
-                <p className="text-slate-500 text-sm leading-relaxed font-medium">
+                <h4 className="text-white font-black uppercase tracking-tight text-lg sm:text-xl">Instrutores</h4>
+                <p className="text-slate-500 text-xs sm:text-sm leading-relaxed font-medium">
                   O perfil da academia foca em profissionais que fazem o acompanhamento em sala, diferenciando-se do modelo self-service das academias low-cost.
                 </p>
               </div>
-              <div className="space-y-6 group">
-                <div className="w-16 h-16 bg-brand-light-blue/10 rounded-2xl flex items-center justify-center group-hover:bg-brand-light-blue group-hover:text-black transition-all">
-                  <Heart size={32} />
+              <div className="space-y-4 sm:space-y-6 group">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-brand-light-blue/10 rounded-2xl flex items-center justify-center group-hover:bg-brand-light-blue group-hover:text-black transition-all">
+                  <Heart size={24} className="sm:w-8 sm:h-8" />
                 </div>
-                <h4 className="text-white font-black uppercase tracking-tight text-xl">Apoio</h4>
-                <p className="text-slate-500 text-sm leading-relaxed font-medium">
+                <h4 className="text-white font-black uppercase tracking-tight text-lg sm:text-xl">Apoio</h4>
+                <p className="text-slate-500 text-xs sm:text-sm leading-relaxed font-medium">
                   Recepcionistas e consultores de vendas que possuem autonomia para negociar planos e convênios locais como o Wellhub.
                 </p>
               </div>

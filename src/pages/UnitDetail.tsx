@@ -153,7 +153,7 @@ export default function UnitDetail() {
   return (
     <div className="min-h-screen bg-darkBg text-white pb-20">
       {/* HERO SECTION */}
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden mb-12">
+      <section className="relative h-[50vh] sm:h-[60vh] flex items-center justify-center overflow-hidden mb-8 sm:mb-12">
         <div className="absolute inset-0 z-0">
           <img 
             src={unit.photos[currentPhoto]} 
@@ -165,7 +165,7 @@ export default function UnitDetail() {
         </div>
 
         <div className="relative z-10 container mx-auto px-6">
-          <Link to="/" className="inline-flex items-center gap-2 text-brand-green hover:gap-3 transition-all mb-10 font-black uppercase tracking-[0.2em] text-[10px]">
+          <Link to="/" className="inline-flex items-center gap-2 text-brand-green hover:gap-3 transition-all mb-8 sm:mb-10 font-black uppercase tracking-[0.2em] text-[10px]">
             <ArrowLeft size={14} /> VOLTAR PARA A HOME
           </Link>
           <motion.div
@@ -173,18 +173,18 @@ export default function UnitDetail() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="flex items-center gap-2 mb-6">
+            <div className="flex items-center gap-2 mb-4 sm:mb-6">
               <span className="w-12 h-[2px] bg-brand-green"></span>
-              <span className="text-brand-green font-black uppercase tracking-[0.3em] text-xs">Unidade de Excelência</span>
+              <span className="text-brand-green font-black uppercase tracking-[0.3em] text-[10px] sm:text-xs">Unidade de Excelência</span>
             </div>
-            <h1 className="text-5xl sm:text-7xl md:text-8xl font-black mb-6 tracking-tighter uppercase">
+            <h1 className="text-4xl sm:text-7xl md:text-8xl font-black mb-4 sm:mb-6 tracking-tighter uppercase leading-[0.9]">
               <span className="text-brand-blue">UNIDADE </span>
               <span className="text-brand-green italic">{unit.name.replace('Unidade ', '')}</span>
             </h1>
-            <div className="flex flex-col sm:flex-row sm:items-center gap-6">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
               <div className="flex items-center gap-3 text-slate-300">
-                <MapPin size={20} className="text-brand-green shrink-0" />
-                <span className="text-sm sm:text-base uppercase tracking-widest font-medium">{unit.address}</span>
+                <MapPin size={18} className="text-brand-green shrink-0" />
+                <span className="text-xs sm:text-base uppercase tracking-widest font-medium">{unit.address}</span>
               </div>
             </div>
           </motion.div>
