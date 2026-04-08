@@ -5,10 +5,10 @@ import { motion, AnimatePresence, useScroll, useSpring } from 'motion/react';
 import FloatingCTA from './FloatingCTA';
 import { GENERAL_PHONE } from '../constants';
 
-const Logo = ({ className, footer }: { className?: string, footer?: boolean }) => (
+const Logo = ({ className, footer, white }: { className?: string, footer?: boolean, white?: boolean }) => (
   <div className={`flex items-center ${footer ? 'justify-center' : ''}`}>
     <img 
-      src={footer ? "/geral/atenas-academia_2015_logo_branco.png" : "/geral/atenas-academia_2015_logo.png"}
+      src={(footer || white) ? "/geral/atenas-academia_2015_logo_branco.png" : "/geral/atenas-academia_2015_logo.png"}
       alt="Academia Atenas"
       className={className || (footer ? "h-12 sm:h-20 w-auto" : "h-10 sm:h-14 w-auto")}
       referrerPolicy="no-referrer"
@@ -71,14 +71,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       />
       
       {/* HEADER */}
-      <header className="fixed w-full z-50 bg-darkBg lg:bg-darkBg/95 lg:backdrop-blur-xl border-b border-white/5">
+      <header className="fixed w-full z-50 bg-brand-blue lg:bg-darkBg/95 lg:backdrop-blur-xl border-b border-white/5">
         <div className="container mx-auto px-4 sm:px-8 py-2 lg:py-4 flex justify-between items-center">
           <Link 
             to="/" 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="shrink-0"
           >
-            <Logo className="h-7 sm:h-10 md:h-12 w-auto" />
+            <Logo className="h-7 sm:h-10 md:h-12 w-auto" white />
           </Link>
           
           <div className="hidden lg:flex items-center gap-8">
@@ -149,7 +149,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
           <div className="flex items-center lg:hidden">
             <button 
-              className="bg-brand-green/10 text-brand-green p-2 rounded-xl hover:bg-brand-green hover:text-white transition-all shadow-lg shadow-brand-green/10"
+              className="bg-white/10 text-white p-2 rounded-xl hover:bg-white/20 transition-all shadow-lg"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -167,10 +167,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[60] lg:hidden bg-darkBg flex flex-col"
+            className="fixed inset-0 z-[60] lg:hidden bg-brand-blue flex flex-col"
           >
             {/* Mobile Menu Header */}
-            <div className="flex justify-between items-center px-4 sm:px-8 py-2 border-b border-white/5 bg-darkBg">
+            <div className="flex justify-between items-center px-4 sm:px-8 py-2 border-b border-white/5 bg-brand-blue">
               <Link 
                 to="/" 
                 onClick={() => {
@@ -179,7 +179,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 }}
                 className="shrink-0"
               >
-                <Logo className="h-7 sm:h-10 w-auto" />
+                <Logo className="h-7 sm:h-10 w-auto" white />
               </Link>
               <button 
                 className="text-white p-2"
@@ -210,18 +210,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 transition={{ delay: 0.4 }}
                 className="mt-8 pt-8 border-t border-white/10 flex flex-col gap-6"
               >
-                <a href={`tel:${GENERAL_PHONE.replace(/\D/g, '')}`} className="text-lg uppercase tracking-widest text-slate-300 hover:text-brand-green transition-colors flex items-center gap-3 font-bold">
-                  <Phone size={20} className="text-brand-green" /> {GENERAL_PHONE}
+                <a href={`tel:${GENERAL_PHONE.replace(/\D/g, '')}`} className="text-lg uppercase tracking-widest text-white hover:text-brand-green transition-colors flex items-center gap-3 font-bold">
+                  <Phone size={20} className="text-white" /> {GENERAL_PHONE}
                 </a>
                 
                 <div className="flex gap-6">
-                  <a href="https://instagram.com/atenasacademia" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 hover:text-brand-green transition-colors">
+                  <a href="https://instagram.com/atenasacademia" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors">
                     <Instagram size={24} />
                   </a>
-                  <a href="https://facebook.com/atenasacademia.oficial" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 hover:text-brand-green transition-colors">
+                  <a href="https://facebook.com/atenasacademia.oficial" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors">
                     <Facebook size={24} />
                   </a>
-                  <a href={`https://wa.me/55${GENERAL_PHONE.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-slate-400 hover:text-brand-green transition-colors">
+                  <a href={`https://wa.me/55${GENERAL_PHONE.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors">
                     <MessageCircle size={24} />
                   </a>
                 </div>

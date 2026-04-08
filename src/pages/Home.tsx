@@ -127,7 +127,7 @@ export default function Home() {
             
             <h1 className="text-4xl sm:text-7xl md:text-8xl font-black mb-6 sm:mb-8 leading-[0.9] tracking-tighter uppercase">
               ACADEMIA <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-light-blue italic">
+              <span className="text-transparent bg-clip-text bg-brand-blue italic pr-2">
                 ATENAS
               </span>
             </h1>
