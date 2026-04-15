@@ -17,9 +17,10 @@ export default function Home() {
   const [wordIndex, setWordIndex] = useState(0);
 
   const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
-  const scale = useTransform(scrollY, [0, 300], [1, 0.9]);
+  const heroY = useTransform(scrollY, [0, 500], [0, 150]);
+  const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
+  const heroScale = useTransform(scrollY, [0, 400], [1, 0.95]);
+  const bgY = useTransform(scrollY, [0, 500], [0, 100]);
 
   useEffect(() => {
     const phraseInterval = setInterval(() => {
@@ -37,10 +38,10 @@ export default function Home() {
   }, [phrases.length, rotatingWords.length]);
 
   const heroImages = [
-    "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80",
-    "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1920&q=80",
-    "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=1920&q=80",
-    "https://images.unsplash.com/photo-1593079831268-3381b0db4a77?auto=format&fit=crop&w=1920&q=80"
+    "/unidades/independencia/indep-frente.jpg",
+    "/unidades/caramuru/caramuru frente drone.jpg",
+    "/unidades/novo-mundo/novo-mundo-fora.png",
+    "/unidades/campos-eliseos/campos-eliseos-frente.jpg"
   ];
 
   const [heroImageIndex, setHeroImageIndex] = useState(0);
@@ -83,7 +84,10 @@ export default function Home() {
     <div className="bg-darkBg">
       {/* HERO SECTION */}
       <section className="relative h-screen flex items-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
+        <motion.div 
+          style={{ y: bgY }}
+          className="absolute inset-0 z-0"
+        >
           <AnimatePresence mode="wait">
             <motion.img 
               key={heroImageIndex}
@@ -99,10 +103,15 @@ export default function Home() {
           {/* Blur/Gradient effect from middle to left */}
           <div className="absolute inset-0 bg-gradient-to-r from-darkBg via-darkBg/80 to-transparent w-full md:w-3/4 lg:w-2/3 backdrop-blur-[2px]"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-transparent"></div>
-        </div>
+        </motion.div>
 
         {/* Hero Carousel Button - Middle Right */}
-        <div className="absolute right-6 sm:right-12 top-1/2 -translate-y-1/2 z-30">
+        <motion.div 
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 1 }}
+          className="absolute right-6 sm:right-12 top-1/2 -translate-y-1/2 z-30"
+        >
           <button 
             onClick={nextHeroImage}
             className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-brand-green hover:border-brand-green transition-all group shadow-xl"
@@ -110,11 +119,11 @@ export default function Home() {
           >
             <ChevronRight size={24} className="group-hover:translate-x-1 transition-transform" />
           </button>
-        </div>
+        </motion.div>
 
         <div className="container mx-auto px-6 relative z-10">
           <motion.div
-            style={{ y: y1, opacity, scale }}
+            style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -127,7 +136,7 @@ export default function Home() {
             
             <h1 className="text-4xl sm:text-7xl md:text-8xl font-black mb-6 sm:mb-8 leading-[0.9] tracking-tighter uppercase">
               ACADEMIA <br />
-              <span className="text-transparent bg-clip-text bg-brand-blue italic pr-2">
+              <span className="text-brand-blue italic">
                 ATENAS
               </span>
             </h1>
@@ -147,18 +156,22 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <button 
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={scrollToPlans}
                 className="bg-brand-green text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full font-black hover:bg-brand-green/90 transition-all uppercase tracking-widest text-[10px] sm:text-xs flex items-center justify-center gap-3 shadow-xl shadow-brand-green/20"
               >
                 ESCOLHER MEU PLANO <Zap size={18} />
-              </button>
-              <button 
+              </motion.button>
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={scrollToUnits}
                 className="glass text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full font-black hover:bg-white/10 transition-all uppercase tracking-widest text-[10px] sm:text-xs flex items-center justify-center gap-3"
               >
                 VER UNIDADES <MapPin size={18} />
-              </button>
+              </motion.button>
             </div>
           </motion.div>
         </div>
@@ -168,34 +181,41 @@ export default function Home() {
       <section className="py-8 sm:py-12 border-y border-white/5 bg-darkCard/30">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
-            <div className="text-center">
-              <p className="text-2xl sm:text-4xl font-black text-brand-blue mb-1">05</p>
-              <p className="text-[9px] sm:text-[10px] uppercase tracking-widest text-slate-500 font-bold">Unidades</p>
-            </div>
-            <div className="text-center">
-              <p className="text-2xl sm:text-4xl font-black text-brand-green mb-1">+10</p>
-              <p className="text-[9px] sm:text-[10px] uppercase tracking-widest text-slate-500 font-bold">Modalidades</p>
-            </div>
-            <div className="text-center">
-              <p className="text-2xl sm:text-4xl font-black text-brand-blue mb-1">100%</p>
-              <p className="text-[9px] sm:text-[10px] uppercase tracking-widest text-slate-500 font-bold">Equipada</p>
-            </div>
-            <div className="text-center">
-              <p className="text-2xl sm:text-4xl font-black text-brand-green mb-1">20+</p>
-              <p className="text-[9px] sm:text-[10px] uppercase tracking-widest text-slate-500 font-bold">Profissionais</p>
-            </div>
+            {[
+              { val: '05', label: 'Unidades', color: 'text-brand-blue' },
+              { val: '+10', label: 'Modalidades', color: 'text-brand-green' },
+              { val: '100%', label: 'Equipada', color: 'text-brand-blue' },
+              { val: '20+', label: 'Profissionais', color: 'text-brand-green' }
+            ].map((stat, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="text-center"
+              >
+                <p className={`text-2xl sm:text-4xl font-black ${stat.color} mb-1`}>{stat.val}</p>
+                <p className="text-[9px] sm:text-[10px] uppercase tracking-widest text-slate-500 font-bold">{stat.label}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* SEÇÃO PLANOS */}
       <section id="planos" className="py-24 container mx-auto px-6">
-        <div className="text-center mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
           <h2 className="text-4xl sm:text-6xl font-black mb-4 tracking-tighter">
             NOSSOS <span className="text-brand-green">PLANOS</span>
           </h2>
           <p className="text-slate-500 uppercase tracking-[0.2em] text-xs font-bold">Escolha o plano ideal para você</p>
-        </div>
+        </motion.div>
 
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* PLANO MENSAL */}
@@ -315,7 +335,12 @@ export default function Home() {
       {/* SEÇÃO UNIDADES */}
       <section id="unidades" className="py-24 bg-darkCard/20">
         <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6"
+          >
             <div>
               <h2 className="text-4xl sm:text-6xl font-black mb-4 tracking-tighter">
                 NOSSAS <span className="text-brand-blue">UNIDADES</span>
@@ -325,7 +350,7 @@ export default function Home() {
             <div className="hidden md:block">
               <div className="w-32 h-[2px] bg-brand-green"></div>
             </div>
-          </div>
+          </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {units.map((unit, index) => (
@@ -369,12 +394,17 @@ export default function Home() {
       {/* SEÇÃO SERVIÇOS */}
       <section id="servicos" className="py-24">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-20">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
             <h2 className="text-4xl sm:text-6xl font-black mb-4 tracking-tighter">
               TUDO QUE <span className="text-brand-blue">VOCÊ PRECISA</span>
             </h2>
             <p className="text-slate-500 uppercase tracking-[0.2em] text-xs font-bold">Infraestrutura completa de alto padrão</p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {services.map((service, index) => (

@@ -150,6 +150,19 @@ export default function UnitDetail() {
     setCurrentPhoto((prev) => (prev - 1 + unit.photos.length) % unit.photos.length);
   };
 
+  const handleSubscribe = (planName: string) => {
+    const now = new Date();
+    const hour = now.getHours();
+    let greeting = 'Bom dia';
+    if (hour >= 12 && hour < 18) greeting = 'Boa tarde';
+    if (hour >= 18 || hour < 5) greeting = 'Boa noite';
+
+    const message = `${greeting}! Gostaria de solicitar o ${planName} para poder realizar o meu cadastro e assinar este plano, para poder dar início aos meus treinos na Academia Atenas - ${unit.name}.`;
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappNumber = unit.whatsapp.replace(/\D/g, '');
+    window.open(`https://wa.me/55${whatsappNumber}?text=${encodedMessage}`, '_blank');
+  };
+
   return (
     <div className="min-h-screen bg-darkBg text-white pb-20">
       {/* HERO SECTION */}
@@ -388,7 +401,10 @@ export default function UnitDetail() {
                     </div>
                   )}
                 </div>
-                <button className="w-full py-5 bg-brand-green text-white font-bold rounded-2xl hover:scale-[1.02] active:scale-95 transition-all uppercase tracking-widest text-xs">
+                <button 
+                  onClick={() => handleSubscribe(plan.name)}
+                  className="w-full py-5 bg-brand-green text-white font-bold rounded-2xl hover:scale-[1.02] active:scale-95 transition-all uppercase tracking-widest text-xs"
+                >
                   ASSINAR AGORA
                 </button>
               </div>

@@ -1,8 +1,14 @@
 import React from 'react';
-import { motion } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { Calendar, Users, Trophy, Target, Heart, Award, Waves, Smartphone, RefreshCw } from 'lucide-react';
 
 export default function History() {
+  const { scrollY } = useScroll();
+  const heroY = useTransform(scrollY, [0, 500], [0, 150]);
+  const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
+  const heroScale = useTransform(scrollY, [0, 400], [1, 0.95]);
+  const bgY = useTransform(scrollY, [0, 500], [0, 100]);
+
   const timeline = [
     {
       year: 'Anos 90',
@@ -46,7 +52,10 @@ export default function History() {
     <div className="bg-darkBg overflow-hidden">
       {/* HERO SECTION */}
       <section className="relative min-h-[60vh] sm:h-screen flex items-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
+        <motion.div 
+          style={{ y: bgY }}
+          className="absolute inset-0 z-0"
+        >
           <img 
             src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80" 
             className="w-full h-full object-cover opacity-30"
@@ -54,10 +63,11 @@ export default function History() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-darkBg via-darkBg/80 to-transparent w-full md:w-3/4 lg:w-2/3 backdrop-blur-[2px]"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-transparent"></div>
-        </div>
+        </motion.div>
         
         <div className="container mx-auto px-6 relative z-10 pt-20">
           <motion.div
+            style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -69,7 +79,7 @@ export default function History() {
             </div>
             <h1 className="text-4xl sm:text-7xl md:text-8xl font-black mb-6 tracking-tighter uppercase leading-[0.9]">
               NOSSA <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-light-blue italic">HISTÓRIA</span>
+              <span className="text-brand-blue italic">HISTÓRIA</span>
             </h1>
             <p className="text-base sm:text-xl text-slate-400 max-w-xl font-medium">
               Mais de três décadas transformando vidas através do esporte e da saúde em Ribeirão Preto.
@@ -235,44 +245,29 @@ export default function History() {
       <section className="py-20">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-3 gap-8">
-            <motion.div 
-              whileHover={{ y: -10 }}
-              className="bg-darkCard p-8 rounded-3xl border border-white/5 text-center"
-            >
-              <div className="w-16 h-16 bg-brand-blue/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Target className="text-brand-blue" size={32} />
-              </div>
-              <h3 className="text-xl mb-4">Missão</h3>
-              <p className="text-slate-400 text-sm">
-                Proporcionar saúde e qualidade de vida através da atividade física orientada, em um ambiente motivador e familiar.
-              </p>
-            </motion.div>
-            
-            <motion.div 
-              whileHover={{ y: -10 }}
-              className="bg-darkCard p-8 rounded-3xl border border-white/5 text-center"
-            >
-              <div className="w-16 h-16 bg-brand-green/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Users className="text-brand-green" size={32} />
-              </div>
-              <h3 className="text-xl mb-4">Visão</h3>
-              <p className="text-slate-400 text-sm">
-                Ser a rede de academias mais admirada de Ribeirão Preto pela excelência técnica e pelo impacto positivo na vida das pessoas.
-              </p>
-            </motion.div>
-            
-            <motion.div 
-              whileHover={{ y: -10 }}
-              className="bg-darkCard p-8 rounded-3xl border border-white/5 text-center"
-            >
-              <div className="w-16 h-16 bg-brand-light-blue/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Heart className="text-brand-light-blue" size={32} />
-              </div>
-              <h3 className="text-xl mb-4">Valores</h3>
-              <p className="text-slate-400 text-sm">
-                Ética, compromisso com o resultado, inovação constante, respeito à individualidade e paixão pelo movimento.
-              </p>
-            </motion.div>
+            {[
+              { icon: <Target className="text-brand-blue" size={32} />, title: 'Missão', desc: 'Proporcionar saúde e qualidade de vida através da atividade física orientada, em um ambiente motivador e familiar.', color: 'bg-brand-blue/20' },
+              { icon: <Users className="text-brand-green" size={32} />, title: 'Visão', desc: 'Ser a rede de academias mais admirada de Ribeirão Preto pela excelência técnica e pelo impacto positivo na vida das pessoas.', color: 'bg-brand-green/20' },
+              { icon: <Heart className="text-brand-light-blue" size={32} />, title: 'Valores', desc: 'Ética, compromisso com o resultado, inovação constante, respeito à individualidade e paixão pelo movimento.', color: 'bg-brand-light-blue/20' }
+            ].map((value, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -10 }}
+                className="bg-darkCard p-8 rounded-3xl border border-white/5 text-center"
+              >
+                <div className={`w-16 h-16 ${value.color} rounded-2xl flex items-center justify-center mx-auto mb-6`}>
+                  {value.icon}
+                </div>
+                <h3 className="text-xl mb-4">{value.title}</h3>
+                <p className="text-slate-400 text-sm">
+                  {value.desc}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

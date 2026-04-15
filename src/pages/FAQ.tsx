@@ -95,15 +95,22 @@ export default function FAQPage() {
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-16">
           <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="text-4xl sm:text-6xl font-black mb-6 tracking-tighter uppercase"
           >
             Dúvidas <span className="text-brand-green">Frequentes</span>
           </motion.h1>
-          <p className="text-slate-400 uppercase tracking-widest text-xs font-bold">
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-slate-400 uppercase tracking-widest text-xs font-bold"
+          >
             Tudo o que você precisa saber sobre a Atenas
-          </p>
+          </motion.p>
         </div>
 
         {/* Search & Filters */}

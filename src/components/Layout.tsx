@@ -21,7 +21,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { scrollYProgress } = useScroll();
+  const { scrollY, scrollYProgress } = useScroll();
+  const [isScrolled, setIsScrolled] = React.useState(false);
+
+  React.useEffect(() => {
+    return scrollY.on('change', (latest) => {
+      setIsScrolled(latest > 50);
+    });
+  }, [scrollY]);
+
   const scaleY = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -71,14 +79,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       />
       
       {/* HEADER */}
-      <header className="fixed w-full z-50 bg-brand-blue lg:bg-darkBg/95 lg:backdrop-blur-xl border-b border-white/5">
-        <div className="container mx-auto px-4 sm:px-8 py-2 lg:py-4 flex justify-between items-center">
+      <header 
+        className={`fixed w-full z-50 transition-all duration-500 ${
+          isScrolled 
+            ? 'bg-brand-blue/95 backdrop-blur-xl py-2 shadow-2xl border-b border-white/10' 
+            : 'bg-brand-blue py-4 lg:py-6 border-b border-transparent'
+        }`}
+      >
+        <div className="container mx-auto px-4 sm:px-8 flex justify-between items-center">
           <Link 
             to="/" 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="shrink-0"
+            className="shrink-0 transition-transform duration-500 hover:scale-105"
           >
-            <Logo className="h-7 sm:h-10 md:h-12 w-auto" white />
+            <Logo className={`${isScrolled ? 'h-6 sm:h-8 md:h-10' : 'h-7 sm:h-10 md:h-12'} w-auto transition-all duration-500`} white />
           </Link>
           
           <div className="hidden lg:flex items-center gap-8">
@@ -87,9 +101,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <button 
                   key={link.name}
                   onClick={() => handleNavClick(link)}
-                  className={`hover:text-brand-green transition-colors uppercase ${location.pathname === link.path ? 'text-brand-green' : 'text-slate-300'}`}
+                  className={`relative hover:text-brand-green transition-colors uppercase group ${
+                    location.pathname === link.path ? 'text-brand-green' : 'text-white'
+                  }`}
                 >
                   {link.name}
+                  <span className={`absolute -bottom-1 left-0 w-0 h-[2px] bg-brand-green transition-all duration-300 group-hover:w-full ${
+                    location.pathname === link.path ? 'w-full' : ''
+                  }`}></span>
                 </button>
               ))}
               

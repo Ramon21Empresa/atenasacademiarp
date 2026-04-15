@@ -1,8 +1,14 @@
 import React, { useState, useRef } from 'react';
-import { motion } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { Phone, Mail, Instagram, Facebook, MessageCircle, Send, CheckCircle2, MapPin, Upload, Paperclip, X } from 'lucide-react';
 
 export default function Contact() {
+  const { scrollY } = useScroll();
+  const heroY = useTransform(scrollY, [0, 500], [0, 150]);
+  const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
+  const heroScale = useTransform(scrollY, [0, 400], [1, 0.95]);
+  const bgY = useTransform(scrollY, [0, 500], [0, 100]);
+
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'success'>('idle');
   const [formData, setFormData] = useState({
     name: '',
@@ -55,27 +61,34 @@ export default function Contact() {
   return (
     <div className="pt-24 pb-20">
       {/* HERO SECTION */}
-      <section className="relative py-12 sm:py-20 bg-darkCard/30">
-        <div className="absolute inset-0 z-0 opacity-10">
+      <section className="relative py-12 sm:py-20 bg-darkCard/30 overflow-hidden">
+        <motion.div 
+          style={{ y: bgY }}
+          className="absolute inset-0 z-0 opacity-10"
+        >
           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--color-brand-blue)_0%,_transparent_70%)]" />
-        </div>
+        </motion.div>
         
         <div className="container mx-auto px-6 relative z-10 text-center pt-12 sm:pt-0">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-3xl sm:text-4xl md:text-6xl mb-4 sm:mb-6 font-black uppercase tracking-tighter"
+          <motion.div
+            style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}
           >
-            Entre em Contato <span className="text-brand-green italic">Conosco</span>
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-slate-400 max-w-2xl mx-auto text-sm sm:text-lg font-medium"
-          >
-            Dúvidas, sugestões ou propostas de trabalho? Estamos prontos para ouvir você.
-          </motion.p>
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-3xl sm:text-4xl md:text-6xl mb-4 sm:mb-6 font-black uppercase tracking-tighter"
+            >
+              Entre em Contato <span className="text-brand-green italic">Conosco</span>
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-slate-400 max-w-2xl mx-auto text-sm sm:text-lg font-medium"
+            >
+              Dúvidas, sugestões ou propostas de trabalho? Estamos prontos para ouvir você.
+            </motion.p>
+          </motion.div>
         </div>
       </section>
 

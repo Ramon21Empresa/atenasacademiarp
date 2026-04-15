@@ -1,10 +1,15 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import { Star, Dumbbell, Sparkles, Flame, Apple, Heart, Zap } from 'lucide-react';
 
 export default function Feedbacks() {
   const navigate = useNavigate();
+  const { scrollY } = useScroll();
+  const heroY = useTransform(scrollY, [0, 500], [0, 150]);
+  const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
+  const heroScale = useTransform(scrollY, [0, 400], [1, 0.95]);
+  const bgY = useTransform(scrollY, [0, 500], [0, 100]);
   
   const handleStartTransformation = () => {
     navigate('/');
@@ -27,7 +32,10 @@ export default function Feedbacks() {
     <div className="bg-darkBg">
       {/* HERO SECTION */}
       <section className="relative min-h-[60vh] sm:h-screen flex items-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
+        <motion.div 
+          style={{ y: bgY }}
+          className="absolute inset-0 z-0"
+        >
           <img 
             src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1920&q=80" 
             className="w-full h-full object-cover opacity-30"
@@ -35,10 +43,11 @@ export default function Feedbacks() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-darkBg via-darkBg/80 to-transparent w-full md:w-3/4 lg:w-2/3 backdrop-blur-[2px]"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-transparent"></div>
-        </div>
+        </motion.div>
 
         <div className="container mx-auto px-6 relative z-10 pt-20">
           <motion.div
+            style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -50,7 +59,7 @@ export default function Feedbacks() {
             </div>
             <h1 className="text-4xl sm:text-7xl md:text-8xl font-black mb-6 tracking-tighter uppercase leading-[0.9]">
               HISTÓRIAS DE <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-light-blue italic">TRANSFORMAÇÃO</span>
+              <span className="text-brand-blue italic">TRANSFORMAÇÃO</span>
             </h1>
             <p className="text-base sm:text-xl text-slate-400 max-w-xl font-medium">
               Ouça os depoimentos de nossos clientes que alcançaram seus objetivos com dedicação e nosso suporte.
