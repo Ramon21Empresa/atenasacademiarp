@@ -31,7 +31,7 @@ const unitData: Record<string, any> = {
     ],
     whatsapp: '(16) 3628-3440',
     phone: '(16) 3628-3440',
-    recorrenteUrl: 'https://vendas.online.sistemapacto.com.br/cadastro?un=3&k=6c21ddab455cdbf49fb61e03c7a3f12f',
+    recorrenteUrl: 'https://vendas.online.sistemapacto.com.br/planos?un=2&k=6c21ddab455cdbf49fb61e03c7a3f12f',
   },
   caramuru: {
     name: 'Unidade Caramuru',
@@ -60,7 +60,7 @@ const unitData: Record<string, any> = {
     ],
     whatsapp: '(16) 3441-1233',
     phone: '(16) 3441-1233',
-    recorrenteUrl: 'https://vendas.online.sistemapacto.com.br/cadastro?un=3&k=6c21ddab455cdbf49fb61e03c7a3f12f',
+    recorrenteUrl: 'https://vendas.online.sistemapacto.com.br/planos?un=5&k=6c21ddab455cdbf49fb61e03c7a3f12f',
   },
   'novo-mundo': {
     name: 'Unidade Novo Mundo',
@@ -89,7 +89,7 @@ const unitData: Record<string, any> = {
     ],
     whatsapp: '(16) 3618-4070',
     phone: '(16) 3618-4070',
-    recorrenteUrl: 'https://vendas.online.sistemapacto.com.br/cadastro?un=3&k=6c21ddab455cdbf49fb61e03c7a3f12f',
+    recorrenteUrl: 'https://vendas.online.sistemapacto.com.br/planos?un=1&k=6c21ddab455cdbf49fb61e03c7a3f12f',
   },
   'vila-tiberio': {
     name: 'Unidade Vila Tibério',
@@ -118,7 +118,7 @@ const unitData: Record<string, any> = {
     ],
     whatsapp: '(16) 99139-2034',
     phone: '(16) 3421-9815',
-    recorrenteUrl: 'https://vendas.online.sistemapacto.com.br/cadastro?un=3&k=6c21ddab455cdbf49fb61e03c7a3f12f',
+    recorrenteUrl: 'https://vendas.online.sistemapacto.com.br/planos?un=4&k=6c21ddab455cdbf49fb61e03c7a3f12f',
   },
   'campos-eliseos': {
     name: 'Unidade Campos Elíseos',
@@ -147,7 +147,7 @@ const unitData: Record<string, any> = {
     ],
     whatsapp: '(16) 3442-0368',
     phone: '(16) 3442-0368',
-    recorrenteUrl: 'https://vendas.online.sistemapacto.com.br/cadastro?un=3&k=6c21ddab455cdbf49fb61e03c7a3f12f',
+    recorrenteUrl: 'https://vendas.online.sistemapacto.com.br/planos?un=3&k=6c21ddab455cdbf49fb61e03c7a3f12f',
   },
 };
 
