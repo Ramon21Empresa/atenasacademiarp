@@ -55,10 +55,10 @@ export default function Home() {
 
   const units = [
     { id: 'independencia', name: 'Unidade Independência', address: 'R. Bolívia, 2095 - Ribeirão Preto', img: './unidades/independencia/jardim-entrada.jpg', tags: ['Musculação', 'Ginástica', 'Climatizada'] },
-    { id: 'caramuru', name: 'Unidade Caramuru', address: 'Avenida Caramuru, 567 - Jardim Sumaré', img: './unidades/caramuru/caramuru-recepcao.jpg', tags: ['Premium', 'Musculação', 'Estacionamento'] },
     { id: 'novo-mundo', name: 'Unidade Novo Mundo', address: 'R. Dr. Morais Lima, 606 - Jardim Anhanguera', img: './unidades/novo-mundo/novo-mundo-piscina.jpg', tags: ['Musculação', 'Ginástica'] },
-    { id: 'vila-tiberio', name: 'Unidade Vila Tibério', address: 'R. Cel. Luiz da Cunha, 436 - Vila Tibério', img: './unidades/vila-tiberio/v-tiberio-recepcao.jpg', tags: ['Musculação', 'Ginástica', 'Estacionamento'] },
     { id: 'campos-eliseos', name: 'Unidade Campos Elíseos', address: 'R. Antônio Milena, 1449 - Campos Elíseos', img: './unidades/campos-eliseos/campo-eliseos-entrada.jpg', tags: ['Premium', 'Musculação', 'Ginástica'] },
+    { id: 'vila-tiberio', name: 'Unidade Vila Tibério', address: 'R. Cel. Luiz da Cunha, 436 - Vila Tibério', img: './unidades/vila-tiberio/v-tiberio-recepcao.jpg', tags: ['Musculação', 'Ginástica', 'Estacionamento'] },
+    { id: 'caramuru', name: 'Unidade Caramuru', address: 'Avenida Caramuru, 567 - Jardim Sumaré', img: './unidades/caramuru/caramuru-recepcao.jpg', tags: ['Premium', 'Musculação', 'Estacionamento'] },
   ];
 
   const scrollToUnits = () => {

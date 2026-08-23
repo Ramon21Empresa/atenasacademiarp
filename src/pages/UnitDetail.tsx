@@ -9,7 +9,6 @@ const unitData: Record<string, any> = {
     address: 'R. Bolívia, 2095 - Ribeirão Preto',
     photos: [
       './unidades/independencia/jardim-fachada.jpg',
-      './unidades/independencia/jardim-entrada.jpg',
       './unidades/independencia/jardim-salao.jpg',
       './unidades/independencia/jardim-cardio.jpg',
       './unidades/independencia/jardim-bike.jpg',
@@ -19,7 +18,7 @@ const unitData: Record<string, any> = {
       './unidades/independencia/jardim-piscina.jpg',
       './unidades/independencia/jardim-piscina2.jpg'
     ],
-    services: ['Musculação', 'Ginástica', 'Pilates (Valor à parte)', 'Natação (Valor à parte)', 'Lutas (Valor à parte)', 'Estacionamento', 'Wi-Fi', 'Hall de recepção', 'Banheiros e Vestiários'],
+    services: ['Musculação', 'Ginástica', 'Dança', 'Spinning', 'Pilates (Valor à parte)', 'Natação a partir de 3 anos, infantil e adulto', 'Hidroginástica', 'Lutas (Valor à parte)', 'Climatizadores', 'Estacionamento', 'Wi-Fi', 'Hall de recepção', 'Banheiros e Vestiários'],
     schedule: [
       { day: 'Segunda - Sexta', time: '05:30 - 22:00' },
       { day: 'Sábado e Feriados', time: '09:00 - 13:00' },
@@ -48,7 +47,7 @@ const unitData: Record<string, any> = {
       './unidades/caramuru/caramuru-maquinas4.jpg',
       './unidades/caramuru/caramuru-maquinas5.jpg'
     ],
-    services: ['Musculação', 'Ginástica', 'Estacionamento Grátis', 'Wi-Fi', 'Hall de recepção', 'Banheiros e Vestiários'],
+    services: ['Musculação', 'Ginástica', 'Dança', 'Ar condicionado', 'Estacionamento', 'Wi-Fi', 'Hall de recepção', 'Banheiros e Vestiários'],
     schedule: [
       { day: 'Segunda - Sexta', time: '05:30 - 23:30' },
       { day: 'Sábado e Feriados', time: '09:00 - 14:00' },
@@ -78,7 +77,7 @@ const unitData: Record<string, any> = {
       './unidades/novo-mundo/novo-mundo-piscina.jpg',
       './unidades/novo-mundo/novo-mundo-piscina2.jpg'
     ],
-    services: ['Musculação', 'Ginástica', 'Pilates (Valor à parte)', 'Natação (Valor à parte)', 'Wi-Fi', 'Hall de recepção', 'Banheiros e Vestiários'],
+    services: ['Musculação', 'Ginástica', 'Dança', 'Spinning', 'Pilates (Valor à parte)', 'Natação a partir de 3 anos, infantil e adulto', 'Hidroginástica', 'Climatizadores', 'Wi-Fi', 'Hall de recepção', 'Banheiros e Vestiários'],
     schedule: [
       { day: 'Segunda - Sexta', time: '05:30 - 22:00' },
       { day: 'Sáb, Dom e Feriados', time: '09:00 - 13:00' },
@@ -106,7 +105,7 @@ const unitData: Record<string, any> = {
       './unidades/vila-tiberio/v-tiberio-maquinas2.jpg',
       './unidades/vila-tiberio/v-tiberio-maquinas3.jpg'
     ],
-    services: ['Musculação', 'Ginástica', 'Estacionamento', 'Wi-Fi', 'Hall de recepção', 'Banheiros e Vestiários'],
+    services: ['Musculação', 'Ginástica', 'Dança', 'Ar condicionado', 'Estacionamento', 'Wi-Fi', 'Hall de recepção', 'Banheiros e Vestiários'],
     schedule: [
       { day: 'Segunda - Sexta', time: '05:30 - 22:00' },
       { day: 'Sábado e Feriados', time: '09:00 - 13:00' },
@@ -135,7 +134,7 @@ const unitData: Record<string, any> = {
       './unidades/campos-eliseos/campo-eliseos-frentemaquinas.jpg',
       './unidades/campos-eliseos/campo-eliseos-maquinas.jpg'
     ],
-    services: ['Musculação', 'Ginástica', 'Wi-Fi', 'Hall de recepção', 'Banheiros e Vestiários'],
+    services: ['Musculação', 'Ginástica', 'Dança', 'Ar condicionado', 'Wi-Fi', 'Hall de recepção', 'Banheiros e Vestiários'],
     schedule: [
       { day: 'Segunda - Sexta', time: '05:30 - 22:00' },
       { day: 'Sábado e Feriados', time: '09:00 - 13:00' },
